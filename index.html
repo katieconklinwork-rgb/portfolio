@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katherine Conklin — Portfolio v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --linen:#F5F1E6; --mocha:#332927; --mocha-soft:#5c4f4a;
+  --hunter:#3E5F44; --bluegrey:#7298C7; --cherry:#F9A8BB; --butter:#F3D98F;
+  --icy:#A4D8FF; --thistle:#D6C8DF; --lavender:#E5E6FA; --lime:#CDE86B;
+  --lime-ink:#4a6110;
+  --purple-ink:#5b4a7a; --hunter-ink:#27402d; --blue-ink:#33517c; --icy-ink:#1f4d73; --thistle-ink:#5e4e6b;
+  --display:"Playfair Display", Georgia, serif;
+  --body:"Inter", system-ui, sans-serif;
+  --maxw:1160px; --pad:clamp(20px,5vw,60px);
+  --sh-sm:0 2px 10px rgba(51,41,39,.05);
+  --sh-md:0 8px 26px rgba(51,41,39,.09);
+  --sh-lg:0 18px 48px rgba(51,41,39,.13);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--linen);color:var(--mocha);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+
+/* ============ FOLDER-TAB NAV ============ */
+.topnav{position:sticky;top:0;z-index:90;background:color-mix(in srgb,var(--linen) 90%,transparent);backdrop-filter:blur(12px);}
+.topnav .inner{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad) 0;display:flex;align-items:flex-end;border-bottom:1.5px solid var(--mocha);}
+.tabs{display:flex;gap:4px;align-items:flex-end;width:100%;}
+.tab{all:unset;box-sizing:border-box;flex:1;text-align:center;cursor:pointer;font-family:var(--display);font-size:clamp(.82rem,1.9vw,1.02rem);font-weight:600;letter-spacing:.01em;
+  padding:.5em .55em .55em;border:1.5px solid var(--mocha);border-bottom:none;border-radius:11px 11px 0 0;
+  position:relative;top:0;transition:padding .18s ease;color:var(--mocha);}
+.tab:hover:not(.active){padding-top:.62em;}
+.tab:focus-visible{outline:2px solid var(--blue-ink);outline-offset:2px;}
+.tab.active{background:var(--linen)!important;padding-top:.72em;padding-bottom:.68em;z-index:2;}
+.tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:2px;background:var(--linen);}
+.t-home{background:var(--butter);} .t-resume{background:var(--icy);} .t-projects{background:var(--lavender);}
+.t-about{background:var(--cherry);} .t-contact{background:var(--lime);}
+.mockup-badge{position:fixed;bottom:14px;right:14px;z-index:99;background:var(--mocha);color:var(--linen);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding:.5em 1em;border-radius:999px;opacity:.85;}
+
+/* ============ SHARED ============ */
+.page{display:none;}
+.page.on{display:block;animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem;}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.01em;line-height:1.08;margin:0;}
+.section{padding:clamp(52px,7.5vw,96px) 0;}
+.lede{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,2.3vw,1.55rem);line-height:1.35;}
+.pill{display:inline-block;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:.45em 1em;border-radius:999px;border:1px solid rgba(51,41,39,.25);margin:.2rem .3rem .2rem 0;background:rgba(255,255,255,.4);}
+
+.marquee{background:var(--mocha);color:var(--linen);padding:1rem 0;overflow:hidden;white-space:nowrap;}
+.marquee .track{display:inline-flex;gap:2.2rem;animation:scroll 28s linear infinite;font-family:var(--display);font-style:italic;font-size:1.3rem;padding-right:2.2rem;}
+.marquee .star{font-style:normal;color:var(--butter);}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,20px);}
+.stat{position:relative;background:var(--linen);border-radius:18px;padding:1.4rem 1.2rem;overflow:hidden;border:1px solid rgba(51,41,39,.08);}
+.stat::after{content:"";position:absolute;right:-32px;bottom:-32px;width:88px;height:88px;border-radius:50%;border:9px solid var(--ring,var(--lavender));}
+.statgrid.no-ring .stat::after{display:none;}
+.statgrid.no-ring .stat{background:#fff;}
+.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1;}
+.stat .l{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mocha-soft);margin-top:.5rem;position:relative;z-index:1;}
+
+.sticky{background:var(--butter);max-width:520px;margin:0 auto;padding:2.1rem 2.3rem;border-radius:3px;transform:rotate(0.7deg);box-shadow:var(--sh-md);position:relative;}
+.sticky::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:110px;height:24px;background:rgba(255,255,255,.45);border:1px solid rgba(51,41,39,.08);}
+.sticky .q{font-family:var(--display);font-style:italic;font-size:clamp(1.1rem,2.1vw,1.45rem);line-height:1.35;margin:0;}
+.sticky .sig{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;margin-top:1.1rem;opacity:.65;}
+
+.diag{position:relative;background:var(--mocha);color:var(--linen);}
+.diag::before{content:"";position:absolute;top:0;left:0;right:0;height:60px;background:var(--linen);clip-path:polygon(0 0,100% 0,0 100%);}
+.diag .section{padding-top:clamp(84px,10vw,132px);}
+.on-dark p{color:color-mix(in srgb,var(--linen) 80%,var(--mocha));}
+
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:124px;gap:12px;}
+.cell{border-radius:14px;position:relative;display:flex;align-items:flex-end;padding:.9rem;background:var(--cellbg,var(--thistle));border:1px solid rgba(51,41,39,.1);}
+.cell .ph{font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;opacity:.7;}
+.b2w{grid-column:span 2;} .b2h{grid-row:span 2;} .bbig{grid-column:span 2;grid-row:span 2;}
+
+.casenav{border-top:1px solid rgba(51,41,39,.14);}
+.casenav .row{display:flex;justify-content:space-between;gap:1rem;padding:clamp(32px,4.5vw,52px) 0;flex-wrap:wrap;}
+.casenav a{all:unset;cursor:pointer;font-family:var(--display);font-weight:600;font-size:clamp(1.1rem,2.2vw,1.5rem);display:flex;flex-direction:column;gap:.25rem;}
+.casenav .lbl{font-family:var(--body);font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;opacity:.55;}
+.casenav .next{text-align:right;align-items:flex-end;}
+.casenav a:hover{opacity:.7;}
+
+footer.foot{padding:2rem 0;border-top:1px solid rgba(51,41,39,.14);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;opacity:.6;}
+footer.foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+
+.hero{padding:clamp(52px,8vw,100px) 0 clamp(56px,8vw,108px);}
+.hero h1{font-weight:700;font-size:clamp(2.4rem,7vw,4.8rem);max-width:16ch;}
+.hero .meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(51,41,39,.25);margin-top:1.8rem;}
+.hero .meta .cell-m{padding:.85rem 1.3rem .85rem 0;margin-right:1.3rem;border-right:1px solid rgba(51,41,39,.2);}
+.hero .meta .cell-m:last-child{border-right:none;}
+.hero .meta .k{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;opacity:.6;display:block;}
+.hero .meta .v{font-weight:600;font-size:.92rem;}
+.hero-mocha{background:var(--mocha);color:var(--linen);}
+.hero-mocha .meta,.hero-mocha .meta .cell-m{border-color:rgba(245,241,230,.28);}
+.hero-hunter{background:var(--hunter);color:var(--linen);}
+.hero-hunter .meta,.hero-hunter .meta .cell-m{border-color:rgba(245,241,230,.28);}
+.hero-bluegrey{background:var(--bluegrey);color:#fff;}
+.hero-bluegrey .meta,.hero-bluegrey .meta .cell-m{border-color:rgba(255,255,255,.32);}
+.hero-thistle{background:var(--thistle);}
+.hero-lavender{background:var(--lavender);}
+.hero-icy{background:var(--icy);}
+
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4.5vw,56px);align-items:start;}
+.cols2 h2{font-size:clamp(1.6rem,3.6vw,2.4rem);}
+.cols2 p{color:var(--mocha-soft);}
+
+.workentry{display:grid;grid-template-columns:60px 1fr auto;gap:clamp(14px,3vw,30px);align-items:center;padding:1.5rem 0;border-bottom:1px solid rgba(51,41,39,.16);cursor:pointer;transition:background .2s;}
+.workentry:hover{background:rgba(51,41,39,.03);}
+.workentry .swatch{width:48px;height:48px;border-radius:13px;border:1px solid rgba(51,41,39,.15);}
+.workentry h3{font-size:clamp(1.15rem,2.4vw,1.6rem);font-weight:600;}
+.workentry .sub{color:var(--mocha-soft);font-size:.86rem;margin-top:.15rem;}
+.workentry .arw{font-size:1.3rem;transition:transform .25s;}
+.workentry:hover .arw{transform:translateX(6px);}
+
+.entries{border-top:1px solid rgba(245,241,230,.25);margin-top:1.8rem;}
+.entry{display:grid;grid-template-columns:60px 1fr 1.1fr;gap:clamp(14px,2.5vw,30px);padding:1.35rem 0;border-bottom:1px solid rgba(245,241,230,.22);align-items:baseline;}
+.entry .idx{font-size:.74rem;font-weight:700;letter-spacing:.1em;opacity:.55;}
+.entry h4{font-family:var(--display);font-weight:600;font-size:clamp(1.05rem,1.9vw,1.3rem);margin:0;}
+.entry p{margin:0;font-size:.9rem;}
+.entries.lightmode{border-color:rgba(51,41,39,.18);}
+.entries.lightmode .entry{border-color:rgba(51,41,39,.14);}
+
+.clipping{background:var(--linen);color:var(--mocha);border-radius:6px;padding:1.7rem;box-shadow:var(--sh-lg);transform:rotate(-0.6deg);border-top:6px solid var(--thistle);}
+.clipping .kick{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--purple-ink);border-bottom:1px solid rgba(51,41,39,.2);padding-bottom:.5rem;margin-bottom:.8rem;display:flex;justify-content:space-between;}
+.clipping h3{font-size:clamp(1.15rem,2.3vw,1.6rem);}
+.clipping p{font-size:.82rem;color:var(--mocha-soft);}
+
+.livecard{background:var(--lavender);border:1px solid #b7a9d4;border-radius:20px;padding:1.7rem;}
+.livecard .status{display:flex;align-items:center;gap:.55em;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--purple-ink);}
+.livecard .live{width:9px;height:9px;border-radius:50%;background:var(--hunter);animation:pulse 2s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,95,68,.5);}70%{box-shadow:0 0 0 9px rgba(62,95,68,0);}100%{box-shadow:0 0 0 0 rgba(62,95,68,0);}}
+.livecard .handle{font-family:var(--display);font-size:1.4rem;font-weight:600;margin:.55rem 0 .2rem;}
+.livecard .sub{color:var(--purple-ink);font-size:.88rem;margin:0;}
+
+.lessongrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,20px);}
+
+/* projects hero art */
+.projhero{position:relative;overflow:hidden;}
+.projhero-art{position:absolute;inset:0;pointer-events:none;}
+.projhero-art .pa{position:absolute;opacity:.32;}
+.projhero-art .pa1{width:64px;top:24%;right:16%;transform:rotate(-8deg);}
+.projhero-art .pa2{width:70px;bottom:20%;right:30%;transform:rotate(6deg);}
+.projhero-art .pa3{width:58px;top:30%;right:6%;transform:rotate(4deg);}
+.projhero-art .pa4{width:38px;bottom:26%;right:9%;}
+.projhero-art .pa5{width:64px;top:22%;right:34%;}
+@media(max-width:720px){.projhero-art{display:none;}}
+
+/* projects: circle categories */
+.catcircles{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);}
+.catcircle{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;padding:1rem;border-radius:20px;transition:transform .25s;}
+.catcircle:hover{transform:translateY(-6px);}
+.catcircle:focus-visible{outline:3px solid var(--blue-ink);outline-offset:4px;border-radius:20px;}
+.cc-ring{width:clamp(120px,17vw,176px);height:clamp(120px,17vw,176px);border-radius:50%;background:var(--cat);border:3px solid var(--mocha);display:flex;align-items:center;justify-content:center;color:var(--catink);margin-bottom:.7rem;transition:box-shadow .25s, transform .25s;position:relative;}
+.cc-ring svg{width:44%;height:44%;}
+.catcircle:hover .cc-ring{box-shadow:var(--sh-md);transform:translateY(-2px);}
+.cc-t{font-family:var(--display);font-size:1.35rem;font-weight:600;}
+.cc-s{font-size:.86rem;color:var(--mocha-soft);}
+.cc-m{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--mocha);margin-top:.2rem;}
+@media(max-width:760px){.catcircles{grid-template-columns:1fr;gap:2rem;}}
+
+/* drill-in view */
+.catback{all:unset;cursor:pointer;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mocha-soft);margin-bottom:1.4rem;display:inline-block;}
+.catback:hover{color:var(--mocha);}
+.cathead{display:flex;gap:1rem;align-items:center;margin-bottom:1.8rem;}
+.catside{width:8px;align-self:stretch;border-radius:4px;min-height:48px;}
+.cathead h2{font-size:clamp(1.7rem,3.8vw,2.5rem);}
+
+/* image-filled project tiles */
+.imgtilegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.2vw,24px);}
+/* brand logo cards (communications) */
+.brandgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.2vw,24px);}
+/* Sugared: carousel filmstrip + filler post grid */
+/* Sugared: interactive click-through carousel (Instagram-style) */
+.igcarousel{position:relative;max-width:380px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:var(--sh-md);background:#000;}
+.igc-viewport{overflow:hidden;width:100%;}
+.igc-track{display:flex;transition:transform .35s ease;}
+.igc-track img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none;}
+.igc-arrow{all:unset;position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--mocha);display:flex;align-items:center;justify-content:center;font-size:1.2rem;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);}
+.igc-arrow:hover{background:#fff;}
+.igc-prev{left:10px;} .igc-next{right:10px;}
+.igc-count{position:absolute;top:12px;right:14px;background:rgba(0,0,0,.55);color:#fff;font-size:.68rem;font-weight:700;padding:.25em .6em;border-radius:999px;}
+.igc-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:6px;}
+.igc-dots .dot{all:unset;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;}
+.igc-dots .dot.active{background:#fff;width:16px;border-radius:4px;transition:width .2s;}
+.fillergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,18px);}
+.ff{margin:0;border-radius:14px;overflow:hidden;box-shadow:var(--sh-sm);}
+.ff img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+@media(max-width:700px){.fillergrid{grid-template-columns:repeat(2,1fr);}}
+/* event photo gallery (Cannababes) */
+.eventgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,16px);}
+.ef{margin:0;border-radius:14px;overflow:hidden;background:#111;box-shadow:var(--sh-sm);position:relative;}
+.ef img{width:100%;aspect-ratio:3/4.2;object-fit:cover;display:block;}
+.ef figcaption{position:absolute;left:0;right:0;bottom:0;padding:.6rem .55rem .5rem;font-size:.66rem;line-height:1.25;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);}
+@media(max-width:900px){.eventgrid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:480px){.eventgrid{grid-template-columns:repeat(2,1fr);}}
+.eventflyer{border-radius:16px;overflow:hidden;box-shadow:var(--sh-md);}
+.eventflyer img{width:100%;display:block;}
+.videowrap{position:relative;width:100%;max-width:520px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;box-shadow:var(--sh-md);background:#000;}
+.videowrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+/* jewelry macro photo gallery (NaturalRockShop) */
+.jewelrygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,20px);}
+.jf{margin:0;aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#111;box-shadow:var(--sh-sm);}
+.jf img{width:100%;height:100%;object-fit:cover;display:block;}
+.jf.ph-empty{background:linear-gradient(135deg,#e4ede6,#cfe0d4);display:flex;align-items:center;justify-content:center;}
+.jf.ph-empty .ph-cap{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--hunter-ink);opacity:.6;text-align:center;padding:0 1rem;}
+@media(max-width:700px){.jewelrygrid{grid-template-columns:1fr 1fr;}}
+@media(max-width:460px){.jewelrygrid{grid-template-columns:1fr;}}
+/* instagram reel grid */
+.reelgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(326px,1fr));gap:20px;align-items:start;justify-content:center;}
+.reelgrid .instagram-media{margin:0!important;min-width:0!important;width:100%!important;}
+.reel-note{margin-top:1.2rem;font-size:.82rem;color:var(--mocha-soft);}
+.reel-note a{color:var(--icy-ink);font-weight:600;}
+.platformlinks{display:flex;flex-wrap:wrap;gap:.7rem;margin:0 0 1.4rem;}
+.platformbtn{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-size:.82rem;font-weight:700;padding:.7em 1.3em;border-radius:999px;color:#fff;transition:opacity .2s;}
+.platformbtn:hover{opacity:.88;}
+.platformbtn.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.platformbtn.tt{background:#010101;}
+@media(max-width:400px){.reelgrid{grid-template-columns:1fr;}}
+.brandtile{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;border:1px solid rgba(51,41,39,.12);border-radius:18px;overflow:hidden;background:#fff;box-shadow:var(--sh-sm);transition:transform .2s ease, box-shadow .2s ease;}
+.brandtile:hover{transform:translateY(-4px);box-shadow:var(--sh-md);}
+.brandtile:focus-visible{outline:2px solid var(--blue-ink);outline-offset:3px;}
+.bt-logo{background:var(--bg,#fff);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;padding:1.6rem;border-bottom:1px solid rgba(51,41,39,.08);}
+.bt-logo img{max-width:76%;max-height:100%;object-fit:contain;}
+.bt-cap{padding:1.1rem 1.3rem 1.2rem;display:flex;flex-direction:column;gap:.32rem;}
+.bt-h{font-family:var(--display);font-size:1.2rem;font-weight:600;line-height:1.15;}
+.bt-d{font-size:.85rem;color:var(--mocha-soft);line-height:1.45;}
+.bt-go{font-size:.72rem;font-weight:700;letter-spacing:.04em;color:var(--mocha);margin-top:.35rem;transition:transform .2s;}
+.brandtile:hover .bt-go{transform:translateX(4px);}
+@media(max-width:760px){.brandgrid{grid-template-columns:1fr;}}
+.itile{all:unset;cursor:pointer;box-sizing:border-box;position:relative;border-radius:20px;overflow:hidden;border:1.5px solid var(--mocha);min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .25s, box-shadow .25s;}
+.itile:hover{transform:translateY(-5px);box-shadow:var(--sh-lg);}
+.itile:focus-visible{outline:3px solid var(--blue-ink);outline-offset:3px;}
+.itile .it-img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .45s ease;}
+.itile .it-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.itile:hover .it-img{transform:scale(1.06);}
+.it-ph{font-size:1.6rem;color:rgba(255,255,255,.85);font-weight:700;letter-spacing:.04em;}
+.itile .it-info{position:relative;z-index:1;padding:1.3rem 1.4rem;background:linear-gradient(to top,rgba(51,41,39,.92) 0%,rgba(51,41,39,.75) 60%,transparent 100%);color:var(--linen);display:flex;flex-direction:column;gap:.35rem;transition:padding .25s;}
+.itile:hover .it-info{padding-bottom:1.7rem;}
+.it-h{font-family:var(--display);font-size:1.3rem;font-weight:600;line-height:1.1;}
+.it-d{font-size:.86rem;color:rgba(245,241,230,.85);}
+.it-tag{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--butter);}
+.itile.soon{opacity:.85;}
+.itile.soon{cursor:default;}
+.itile.soon:hover{transform:none;box-shadow:none;}
+.itile.soon .it-img{transform:none;}
+
+/* education cards (accordion, no image) */
+.edugrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,2vw,20px);align-items:start;}
+.ecard{border:1.5px solid var(--mocha);border-radius:18px;padding:1.4rem 1.4rem;background:#fff;cursor:pointer;transition:transform .18s, box-shadow .18s;}
+.ecard:not(.static):hover{transform:translateY(-3px);box-shadow:0 14px 32px color-mix(in srgb,var(--icy) 55%,transparent);}
+.ecard.static{cursor:default;background:var(--linen);}
+.ec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;}
+.ec-tag{display:block;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--icy-ink);margin-bottom:.4rem;}
+.ec-head h3{font-family:var(--display);font-size:1.18rem;font-weight:600;margin:0;line-height:1.15;}
+.ecard .acc-plus{font-size:1.4rem;line-height:1;flex:0 0 auto;transition:transform .25s;}
+.ecard.open .acc-plus{transform:rotate(45deg);}
+.ecard .acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.ecard.open .acc-body{max-height:640px;margin-top:.5rem;}
+.ecard .acc-body p{font-size:.86rem;color:var(--mocha-soft);margin:.5rem 0 0;}
+.ec-dl{display:inline-block;margin-top:.7rem;font-size:.76rem;font-weight:700;text-decoration:none;color:var(--icy-ink);background:var(--icy);padding:.5em 1.1em;border-radius:999px;}
+.ec-dl:hover{opacity:.85;}
+.writeblock{margin-top:clamp(16px,2.2vw,22px);display:flex;flex-direction:column;gap:.8rem;}
+
+/* modern lesson cards (open full pages) */
+.lessongrid2{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,20px);}
+.lcard{all:unset;box-sizing:border-box;cursor:pointer;background:#fff;border:1px solid rgba(51,41,39,.12);border-radius:18px;padding:1.5rem 1.4rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;position:relative;overflow:hidden;transition:transform .2s ease, box-shadow .2s ease;box-shadow:var(--sh-sm);}
+.lcard::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--lc);}
+.lcard:hover{transform:translateY(-4px);box-shadow:var(--sh-md);}
+.lcard:focus-visible{outline:2px solid var(--blue-ink);outline-offset:3px;}
+.lc-ic{width:44px;height:44px;border-radius:12px;background:var(--lc);color:var(--lci);display:flex;align-items:center;justify-content:center;margin-bottom:.3rem;}
+.lc-ic svg{width:24px;height:24px;}
+.lc-tag{font-size:.58rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--mocha-soft);}
+.lc-h{font-family:var(--display);font-size:1.18rem;font-weight:600;line-height:1.15;}
+.lc-h em{font-style:italic;}
+.lc-d{font-size:.85rem;color:var(--mocha-soft);line-height:1.45;flex:1;}
+.lc-go{font-size:.72rem;font-weight:700;letter-spacing:.04em;color:var(--mocha);margin-top:.4rem;transition:transform .2s;}
+.lcard:hover .lc-go{transform:translateX(4px);}
+@media(max-width:860px){.lessongrid2{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.lessongrid2{grid-template-columns:1fr;}}
+
+/* lesson full-page building blocks */
+.lessonbody{max-width:820px;}
+.lblock{margin-bottom:clamp(28px,4vw,44px);}
+.lblock h2{font-size:clamp(1.35rem,2.8vw,1.9rem);margin-bottom:.7rem;}
+.lblock p{color:var(--mocha-soft);margin:.6rem 0 0;}
+.lblock p:first-of-type{margin-top:0;}
+.lchips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 0;}
+.lstep{display:grid;grid-template-columns:auto 1fr;gap:1rem 1.2rem;align-items:start;margin-top:1rem;}
+.lstep .sn{font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--icy-ink);background:var(--icy);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.lstep .st b{display:block;font-family:var(--display);font-size:1.05rem;font-weight:600;margin-bottom:.2rem;}
+.lstep .st p{margin:0;font-size:.9rem;}
+.ltable{width:100%;border-collapse:collapse;margin-top:1.1rem;font-size:.86rem;border:1px solid rgba(51,41,39,.14);border-radius:12px;overflow:hidden;}
+.ltable th{background:var(--mocha);color:var(--linen);font-family:var(--body);font-weight:600;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;text-align:left;padding:.7rem .9rem;}
+.ltable td{padding:.65rem .9rem;border-top:1px solid rgba(51,41,39,.1);color:var(--mocha-soft);}
+.ltable tr:nth-child(even) td{background:rgba(245,241,230,.5);}
+.callout{background:#fff;border:1px solid rgba(51,41,39,.12);border-left:4px solid var(--icy);border-radius:12px;padding:1.2rem 1.4rem;margin-top:1.2rem;box-shadow:var(--sh-sm);}
+.callout b{font-family:var(--display);font-size:1rem;}
+.callout p{margin:.35rem 0 0;font-size:.88rem;color:var(--mocha-soft);}
+.rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1.1rem;}
+.rolebox{background:#fff;border:1px solid rgba(51,41,39,.12);border-radius:12px;padding:.9rem 1.1rem;box-shadow:var(--sh-sm);}
+.rolebox b{font-family:var(--display);font-size:.98rem;}
+.rolebox span{display:block;font-size:.82rem;color:var(--mocha-soft);margin-top:.2rem;}
+@media(max-width:620px){.rolegrid{grid-template-columns:1fr;}.lstep .sn{width:38px;height:38px;}}
+.pdfrow{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;background:var(--linen);border:1px solid rgba(51,41,39,.14);border-radius:14px;padding:1.1rem 1.3rem;margin-top:1.4rem;}
+.pdfrow .pdfic{width:40px;height:40px;border-radius:10px;background:var(--cherry);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.pdfrow .pdft{flex:1;min-width:180px;}
+.pdfrow .pdft b{font-family:var(--display);font-size:1rem;}
+.pdfrow .pdft span{display:block;font-size:.8rem;color:var(--mocha-soft);}
+.pdfrow a{text-decoration:none;background:var(--mocha);color:var(--linen);font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.7em 1.3em;border-radius:999px;white-space:nowrap;}
+.pdfrow a:hover{opacity:.9;}
+
+/* writing excerpt blocks */
+.script{background:#fff;border:1px solid rgba(51,41,39,.14);border-radius:14px;padding:clamp(1.4rem,3vw,2.2rem);font-family:"Courier New",ui-monospace,monospace;font-size:.86rem;line-height:1.7;color:var(--mocha);box-shadow:var(--sh-sm);margin-top:1.1rem;}
+.script .slug{font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:1.1rem 0 .3rem;}
+.script .slug:first-child{margin-top:0;}
+.script .action{margin:.3rem 0;}
+.script .cue{text-align:center;font-weight:700;text-transform:uppercase;margin:.7rem 0 0;}
+.script .dlg{max-width:60%;margin:.1rem auto .3rem;text-align:center;}
+.script .paren{text-align:center;font-style:italic;color:var(--mocha-soft);margin:0 auto;max-width:50%;}
+.essayquote{background:#fff;border:1px solid rgba(51,41,39,.14);border-left:4px solid var(--bluegrey);border-radius:12px;padding:1.3rem 1.5rem;margin-top:1.1rem;box-shadow:var(--sh-sm);}
+.essayquote p{font-family:var(--display);font-style:italic;font-size:1.08rem;line-height:1.5;color:var(--mocha);margin:0;}
+.potter{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-top:1.1rem;}
+.potterbox{background:#fff;border:1px solid rgba(51,41,39,.12);border-radius:12px;padding:1rem 1.2rem;box-shadow:var(--sh-sm);}
+.potterbox b{font-family:var(--display);font-size:1rem;display:block;margin-bottom:.2rem;}
+.potterbox span{font-size:.84rem;color:var(--mocha-soft);}
+@media(max-width:620px){.potter{grid-template-columns:1fr;}.script .dlg,.script .paren{max-width:100%;}}
+
+.soontag{display:inline-block;font-family:var(--body);font-size:.54rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--butter);color:var(--mocha);border-radius:999px;padding:.28em .7em;vertical-align:middle;margin-left:.4em;}
+
+/* about page */
+.aboutgrid{display:grid;grid-template-columns:1.4fr .9fr;gap:clamp(24px,4vw,52px);align-items:start;}
+.aboutphoto{position:relative;border-radius:22px;overflow:hidden;border:1.5px solid var(--mocha);box-shadow:0 20px 44px color-mix(in srgb,var(--cherry) 60%,transparent);min-height:340px;background:var(--thistle);}
+.aboutphoto img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.aboutphoto .ph{position:absolute;inset:0;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mocha-soft);}
+.accgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.8vw,18px);margin-top:1.2rem;}
+.accbox{border:1.5px solid var(--mocha);border-radius:16px;padding:1.2rem 1.2rem;background:#fff;position:relative;overflow:hidden;}
+.accbox::before{content:"";position:absolute;top:0;left:0;width:100%;height:7px;background:var(--a,var(--lavender));}
+.accbox .acc-n{font-family:var(--display);font-size:1.15rem;font-weight:700;margin:.3rem 0 .4rem;}
+.accbox p{font-size:.82rem;color:var(--mocha-soft);margin:0;}
+.accbox-link{display:inline-block;margin-top:.7rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;text-decoration:none;color:var(--blue-ink);}
+.accbox-link:hover{text-decoration:underline;}
+@media(max-width:900px){.aboutgrid{grid-template-columns:1fr;}.accgrid{grid-template-columns:1fr;}}
+.dreamcard{margin-top:1rem;background:var(--butter);border:1.5px solid var(--mocha);border-radius:16px;padding:1.2rem 1.3rem;}
+.dreamcard .dc-k{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.5rem;color:#7a5f1f;}
+.dreamcard p{font-size:.86rem;color:var(--mocha);margin:0;line-height:1.5;}
+.photostrip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.8vw,18px);align-items:start;}
+.pf{margin:0;border-radius:16px;overflow:hidden;border:1px solid rgba(51,41,39,.12);background:var(--thistle);box-shadow:var(--sh-sm);position:relative;}
+.pf img{width:100%;height:clamp(200px,24vw,280px);object-fit:cover;display:block;}
+.pf.tall img{height:clamp(240px,30vw,340px);}
+.pf figcaption{font-size:.72rem;color:var(--mocha-soft);padding:.7rem .9rem;background:#fff;}
+.pf.ph-empty{background:linear-gradient(135deg,var(--thistle),var(--lavender));min-height:clamp(200px,24vw,280px);display:flex;flex-direction:column;justify-content:flex-end;}
+.pf.ph-empty figcaption::before{content:attr(data-ph);display:block;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.6;margin-bottom:.3rem;}
+@media(max-width:700px){.photostrip{grid-template-columns:1fr 1fr;}.pf.tall{grid-column:span 2;}.pf.tall img{height:clamp(220px,50vw,300px);}}
+.skillgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,20px);}
+.skillcol{background:#fff;border:1.5px solid var(--mocha);border-radius:16px;padding:1.1rem 1.2rem;}
+.skillcol b{display:block;font-family:var(--display);font-size:1.02rem;font-weight:600;margin-bottom:.7rem;}
+.skillcol .pill{margin:.2rem .25rem .2rem 0;}
+@media(max-width:900px){.skillgrid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.skillgrid{grid-template-columns:1fr;}}
+
+/* contact page */
+.contactlist{display:flex;flex-direction:column;gap:.9rem;max-width:640px;}
+.crow{display:flex;align-items:center;gap:1.1rem;text-decoration:none;border:1.5px solid var(--mocha);border-radius:16px;padding:1.1rem 1.3rem;background:#fff;transition:transform .18s, box-shadow .18s;}
+.crow:hover{transform:translateX(5px);box-shadow:var(--sh-md);}
+.crow-ic{flex:0 0 auto;width:46px;height:46px;border-radius:12px;background:var(--c,var(--lavender));border:1.5px solid var(--mocha);display:flex;align-items:center;justify-content:center;color:var(--mocha);}
+.crow-ic svg{width:22px;height:22px;}
+.crow-t{display:flex;flex-direction:column;flex:1;}
+.crow-h{font-family:var(--display);font-size:1.1rem;font-weight:600;}
+.crow-d{font-size:.84rem;color:var(--mocha-soft);}
+.crow-arw{font-size:1.2rem;color:var(--mocha-soft);}
+@media(max-width:900px){.imgtilegrid,.edugrid{grid-template-columns:1fr;}}
+.crow:hover .crow-arw{color:var(--mocha);}
+.projcol .workentry{grid-template-columns:44px 1fr auto;gap:1rem;padding:1.15rem 0;}
+.projcol .workentry .swatch{width:40px;height:40px;border-radius:11px;}
+.projcol .workentry h3{font-size:1.15rem;}
+.projcol .workentry .sub{font-size:.8rem;}
+
+/* accordion */
+.acc{border:1.5px solid var(--mocha);border-radius:16px;margin-bottom:.8rem;overflow:hidden;cursor:pointer;background:#fff;transition:background .2s;}
+.acc:hover{background:#fbf9f3;}
+.acc-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.3rem;}
+.acc-std{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--icy-ink);background:var(--icy);border-radius:999px;padding:.32em .85em;display:inline-block;margin-bottom:.5rem;}
+.acc-head h3{font-family:var(--display);font-size:1.12rem;font-weight:600;}
+.acc-plus{font-family:var(--body);font-size:1.5rem;font-weight:400;line-height:1;flex:0 0 auto;transition:transform .25s;}
+.acc.open .acc-plus{transform:rotate(45deg);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.3rem;}
+.acc.open .acc-body{max-height:600px;padding-bottom:1.2rem;}
+.acc-body p{font-size:.86rem;color:var(--mocha-soft);margin:.5rem 0 0;}
+.acc-body p:first-child{margin-top:0;}
+@media(max-width:820px){.projsplit{grid-template-columns:1fr;gap:2.5rem;}}
+
+/* ============ HOME (sketch layout) ============ */
+.namehead{padding:clamp(36px,6vw,64px) 0 0;}
+.namehead h1{font-size:clamp(2.6rem,8.2vw,6.2rem);font-weight:700;letter-spacing:.02em;line-height:1;text-transform:uppercase;text-align:center;}
+.namehead .under{font-size:.72rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;text-align:center;color:var(--mocha-soft);margin-top:.7rem;}
+.summarybar{margin:clamp(22px,3.5vw,34px) auto 0;max-width:900px;border:1.5px solid var(--mocha);border-radius:14px;padding:1rem 1.6rem;text-align:center;background:#fff;}
+.summarybar p{margin:0;font-family:var(--display);font-style:italic;font-size:clamp(1rem,2vw,1.3rem);}
+.homegrid{display:grid;grid-template-columns:290px 1fr 290px;gap:clamp(18px,2.6vw,30px);margin-top:clamp(30px,4.5vw,48px);align-items:stretch;}
+.homecard{background:#fff;border:1px solid rgba(51,41,39,.14);border-radius:20px;padding:1.5rem 1.4rem;}
+.homecard .hd{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--mocha-soft);margin-bottom:1rem;}
+.timeline{border-left:2px solid var(--thistle);padding-left:1.3rem;display:flex;flex-direction:column;gap:1.1rem;}
+.tl-item{position:relative;}
+.tl-item::before{content:"";position:absolute;left:calc(-1.3rem - 6px);top:.32rem;width:10px;height:10px;border-radius:50%;background:var(--bluegrey);}
+.tl-item .when{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--mocha-soft);}
+.tl-item h3{font-size:.98rem;}
+.tl-item p{font-size:.8rem;color:var(--mocha-soft);margin:.15rem 0 0;}
+.majorbox{margin-top:1.2rem;background:var(--lavender);border-radius:14px;padding:1rem 1.1rem;font-size:.82rem;}
+.majorbox b{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.35rem;color:var(--purple-ink);}
+
+/* center hook: animated type */
+.hook{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 1rem;position:relative;overflow:hidden;border-radius:20px;background:
+  radial-gradient(circle at 20% 15%, color-mix(in srgb,var(--icy) 45%, transparent) 0 90px, transparent 90px),
+  radial-gradient(circle at 85% 80%, color-mix(in srgb,var(--cherry) 40%, transparent) 0 110px, transparent 110px),
+  radial-gradient(circle at 80% 12%, color-mix(in srgb,var(--butter) 55%, transparent) 0 70px, transparent 70px),
+  #fff;border:1px solid rgba(51,41,39,.14);}
+.hook .line1{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.4rem);}
+.hook .flipwrap{height:clamp(3rem,6.5vw,4.6rem);overflow:hidden;margin-top:.2rem;}
+.hook .flip{font-family:var(--display);font-style:italic;font-weight:700;font-size:clamp(2.2rem,5.4vw,3.9rem);line-height:1.2;display:block;transition:transform .55s cubic-bezier(.6,0,.2,1),opacity .4s;}
+.hook .flip .word{display:block;height:clamp(3rem,6.5vw,4.6rem);}
+.w-lav{color:var(--purple-ink);} .w-hun{color:var(--hunter);} .w-blu{color:var(--blue-ink);} .w-che{color:#c26479;} .w-icy{color:var(--icy-ink);}
+.hook .tagline{margin-top:1.4rem;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mocha-soft);}
+
+/* right column */
+.photobox{background:var(--thistle);border-radius:20px;min-height:250px;display:flex;align-items:flex-end;padding:1rem;border:1px solid rgba(51,41,39,.14);}
+.photobox .ph{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.7;}
+.photobox img{width:100%;height:100%;object-fit:cover;border-radius:inherit;position:absolute;inset:0;}
+.photobox{position:relative;}
+.contactcard{margin-top:clamp(16px,2vw,22px);background:var(--mocha);color:var(--linen);border-radius:20px;padding:1.5rem 1.4rem;}
+.contactcard .hd{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;opacity:.7;margin-bottom:.8rem;}
+.contactcard a{display:flex;align-items:center;gap:.7rem;text-decoration:none;font-weight:600;font-size:.9rem;padding:.6rem 0;border-bottom:1px solid rgba(245,241,230,.18);}
+.contactcard a svg{flex:0 0 auto;color:var(--butter);}
+.contactcard a span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.contactcard a:last-child{border-bottom:none;}
+.contactcard a:hover{color:var(--butter);}
+
+/* resume page */
+.reswrap{display:grid;grid-template-columns:2fr 1fr;gap:clamp(24px,4vw,52px);}
+.resblock{margin-bottom:2rem;}
+.resblock h3{font-size:1.25rem;border-bottom:1.5px solid var(--mocha);padding-bottom:.4rem;margin-bottom:1rem;}
+.resitem{margin-bottom:1.2rem;}
+.resitem .top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.resitem h4{font-family:var(--display);font-size:1.02rem;font-weight:600;margin:0;}
+.resitem .when{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mocha-soft);}
+.resitem p{font-size:.88rem;color:var(--mocha-soft);margin:.3rem 0 0;}
+.dlcard{background:#fff;border:1px solid rgba(51,41,39,.14);border-radius:18px;padding:1.4rem;margin-bottom:1rem;}
+.dlcard h4{font-family:var(--display);font-size:1.05rem;margin:0 0 .3rem;}
+.dlcard p{font-size:.82rem;color:var(--mocha-soft);margin:0 0 .9rem;}
+.dlbtn{display:inline-block;background:var(--mocha);color:var(--linen);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.7em 1.4em;border-radius:999px;cursor:pointer;}
+.dlbtn:hover{opacity:.9;}
+.resbtns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem;}
+.dlbtn.ghost{background:transparent;color:var(--mocha);border:1.5px solid var(--mocha);}
+.dlbtn.ghost:hover{background:var(--mocha);color:var(--linen);opacity:1;}
+.dlbtn{text-decoration:none;}
+
+.cta{display:inline-block;margin-top:1.6rem;background:var(--mocha);color:var(--linen);font-weight:600;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:.85em 1.7em;border-radius:999px;cursor:pointer;border:none;}
+.cta:hover{opacity:.9;}
+
+.split{display:grid;grid-template-columns:1fr 1fr;border-radius:22px;overflow:hidden;border:1px solid rgba(51,41,39,.12);}
+.split .side{padding:2rem 1.8rem;}
+.split .ny{background:var(--icy);} .split .mob{background:var(--butter);}
+.split h3{font-size:1.3rem;margin-bottom:.5rem;}
+.split p{font-size:.9rem;color:var(--mocha-soft);margin:0;}
+
+.sectionlabel{display:flex;align-items:center;gap:1rem;margin-bottom:1.6rem;}
+.sectionlabel .tabchip{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.5em 1.2em;border-radius:10px 10px 0 0;border:1.5px solid var(--mocha);border-bottom:none;position:relative;top:2px;background:var(--chip,var(--lavender));}
+.sectionlabel .rule{flex:1;height:2px;background:var(--mocha);}
+
+@media(max-width:1000px){
+  .homegrid{grid-template-columns:1fr;}
+  .hook{min-height:280px;}
+}
+@media(max-width:900px){
+  .statgrid{grid-template-columns:repeat(2,1fr);}
+  .cols2,.reswrap{grid-template-columns:1fr;}
+  .bento{grid-template-columns:repeat(2,1fr);}
+  .bbig{grid-column:span 2;}
+  .lessongrid{grid-template-columns:1fr;}
+  .split{grid-template-columns:1fr;}
+  .entry{grid-template-columns:36px 1fr;}
+  .entry p{grid-column:1/-1;}
+  .tabs{gap:3px;}
+  .tab{padding:.5em .3em .62em;letter-spacing:0;}
+  .workentry{grid-template-columns:44px 1fr auto;}
+}
+/* ===== v3 homepage ===== */
+.namebanner{padding:clamp(18px,3vw,36px) 12px 0;overflow:hidden;}
+.namebanner span{display:block;font-family:var(--display);font-weight:700;text-transform:uppercase;white-space:nowrap;line-height:1;text-align:center;}
+.homehero2{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(22px,4vw,52px);align-items:center;margin-top:clamp(28px,4.5vw,50px);}
+.mainhook{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,5.4vw,4.2rem);line-height:1.05;letter-spacing:-.015em;}
+.mainhook em{font-style:italic;color:var(--bluegrey);}
+.hh-sub{color:var(--mocha-soft);max-width:42ch;margin-top:1rem;font-size:1.02rem;}
+.photobox.big{min-height:clamp(300px,36vw,420px);box-shadow:0 22px 48px color-mix(in srgb,var(--cherry) 55%,transparent);border:1.5px solid var(--mocha);}
+.majorpanel{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,20px);margin-top:clamp(30px,4.5vw,52px);}
+.mp{border-radius:18px;padding:1.3rem 1.25rem;border:1.5px solid var(--mocha);}
+.mp b{display:block;font-family:var(--body);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;margin-bottom:.45rem;}
+.mp p{margin:0;font-size:.88rem;}
+.mp-lav{background:var(--lavender);} .mp-icy{background:var(--icy);} .mp-but{background:var(--butter);} .mp-che{background:var(--cherry);}
+.majorpanel.two{grid-template-columns:1fr 1fr;}
+
+/* what I'm looking for — full-width band */
+.lookingfor{margin-top:clamp(16px,2.4vw,24px);border:1.5px solid var(--mocha);border-radius:20px;overflow:hidden;background:#fff;}
+.lookingfor .lf-head{background:var(--icy);padding:1.6rem 1.8rem;}
+.lookingfor .lf-head b{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;margin-bottom:.6rem;color:var(--icy-ink);}
+.lookingfor .lf-head p{margin:0;font-size:1.18rem;line-height:1.5;max-width:74ch;}
+
+/* decorative doodle + shape panel (fills the space under contact card) */
+.decopanel{position:relative;margin-top:clamp(18px,2.6vw,26px);flex:1 1 auto;min-height:clamp(280px,34vw,420px);border-radius:18px;overflow:hidden;
+  background:linear-gradient(160deg,#fbf8f0,#f2ede0);border:1px solid rgba(51,41,39,.10);}
+.decopanel .blob{position:absolute;border-radius:46% 54% 60% 40% / 55% 48% 52% 45%;opacity:.7;}
+.decopanel .b1{width:104px;height:104px;background:var(--cherry);top:5%;left:8%;}
+.decopanel .b2{width:80px;height:80px;background:var(--icy);top:6%;right:12%;border-radius:60% 40% 45% 55% / 50% 60% 40% 50%;}
+.decopanel .b3{width:64px;height:64px;background:var(--butter);top:33%;left:42%;border-radius:50% 50% 55% 45% / 55% 45% 55% 45%;}
+.decopanel .doodle{position:absolute;}
+.decopanel .d1{width:46px;top:4%;left:40%;transform:rotate(-8deg);}
+.decopanel .d2{width:58px;top:20%;left:6%;}
+.decopanel .d3{width:34px;top:19%;right:8%;transform:rotate(10deg);}
+.decopanel .d4{width:42px;top:22%;left:24%;}
+.decopanel .d5{width:40px;top:9%;right:34%;transform:rotate(6deg);}
+.decopanel .d6{width:60px;top:34%;right:14%;}
+/* mid + lower */
+.decopanel .b4{width:76px;height:76px;background:var(--lavender);top:52%;left:10%;border-radius:52% 48% 43% 57% / 48% 52% 48% 52%;}
+.decopanel .b5{width:54px;height:54px;background:var(--lime);top:58%;right:38%;border-radius:50% 50% 48% 52% / 52% 48% 50% 50%;}
+.decopanel .b6{width:66px;height:66px;background:var(--thistle);bottom:6%;right:12%;border-radius:48% 52% 55% 45% / 52% 46% 54% 48%;}
+.decopanel .d7{width:44px;top:48%;right:16%;transform:rotate(-6deg);}
+.decopanel .d8{width:56px;top:64%;left:34%;}
+.decopanel .d9{width:34px;top:52%;left:30%;transform:rotate(12deg);}
+.decopanel .d10{width:48px;bottom:8%;left:16%;transform:rotate(-10deg);}
+.decopanel .d11{width:36px;bottom:14%;left:44%;transform:rotate(8deg);}
+.decopanel .d12{width:52px;bottom:22%;right:34%;}
+.homerow2{display:grid;grid-template-columns:1.5fr .8fr;gap:clamp(18px,2.6vw,28px);margin-top:clamp(26px,4vw,44px);align-items:stretch;}
+.homerow2 > div:last-child{display:flex;flex-direction:column;}
+.tl2 .tl-item::before{background:var(--dot,var(--bluegrey));}
+/* two-sided timeline */
+.tl-center{position:relative;margin-top:.5rem;padding:0;}
+.tl-center::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--thistle);transform:translateX(-50%);}
+.tlc{position:relative;width:50%;padding:.55rem 1.6rem;box-sizing:border-box;margin-bottom:.6rem;}
+.tlc.left{left:0;text-align:right;}
+.tlc.right{left:50%;text-align:left;}
+.tlc::before{content:"";position:absolute;top:.95rem;width:11px;height:11px;border-radius:50%;background:var(--dot,var(--bluegrey));border:2px solid var(--linen);}
+.tlc.left::before{right:-6px;} .tlc.right::before{left:-6px;}
+.tlc .when{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--mocha-soft);}
+.tlc h3{font-size:.95rem;margin:.1rem 0 0;}
+.tlc p{font-size:.78rem;color:var(--mocha-soft);margin:.15rem 0 0;}
+/* milestone = bold emphasis, no box */
+.tlc.milestone{padding-top:.75rem;padding-bottom:.75rem;}
+.tlc.milestone::before{width:17px;height:17px;background:var(--mocha);border-width:3px;top:.8rem;}
+.tlc.milestone.left::before{right:-9px;} .tlc.milestone.right::before{left:-9px;}
+.tlc.milestone .when{color:var(--mocha);font-weight:800;opacity:.9;}
+.tlc.milestone h3{font-size:1.32rem;font-weight:700;}
+.tlc.milestone p{font-size:.86rem;color:var(--mocha);font-weight:500;}
+@media(max-width:640px){
+  .tl-center::before{left:9px;}
+  .tlc,.tlc.left,.tlc.right{width:100%;left:0;text-align:left;padding-left:2rem;padding-right:0;}
+  .tlc.left::before,.tlc.right::before{left:4px;right:auto;}
+  .tlc.milestone{text-align:left;}
+  .tlc.milestone::before{left:2px;}
+}
+.d-lav{--dot:var(--purple-ink);} .d-icy{--dot:var(--icy-ink);} .d-blu{--dot:var(--bluegrey);}
+.d-but{--dot:#c9a53f;} .d-che{--dot:#c26479;} .d-hun{--dot:var(--hunter);}
+@media(max-width:1000px){
+  .homehero2{grid-template-columns:1fr;}
+  .majorpanel{grid-template-columns:1fr;}
+  .homerow2{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;} .hook .flip{transform:none!important;}}
+
+/* refined hero decorations (resume + about) */
+.herodeco{position:relative;overflow:hidden;}
+.hero-art{position:absolute;inset:0;pointer-events:none;}
+.hero-art .ha{position:absolute;opacity:.28;}
+.hero-art .ha1{width:56px;top:18%;right:9%;transform:rotate(-10deg);}
+.hero-art .ha2{width:44px;top:52%;right:6%;transform:rotate(6deg);}
+.hero-art .ha3{width:40px;top:22%;right:24%;transform:rotate(8deg);}
+.hero-art .ha4{width:52px;bottom:16%;right:20%;transform:rotate(-6deg);}
+@media(max-width:760px){.hero-art{display:none;}}
+
+/* contact hero doodles */
+.contacthero{position:relative;overflow:hidden;}
+.contact-art{position:absolute;inset:0;pointer-events:none;}
+.contact-art .ca{position:absolute;opacity:.4;}
+.contact-art .ca1{width:52px;top:20%;right:8%;transform:rotate(-15deg);}
+.contact-art .ca2{width:34px;top:14%;right:24%;}
+.contact-art .ca3{width:60px;bottom:16%;right:16%;}
+.contact-art .ca4{width:26px;bottom:26%;right:34%;transform:rotate(10deg);}
+.contact-art .ca5{width:36px;top:48%;right:4%;}
+@media(max-width:760px){.contact-art{display:none;}}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <div class="tabs">
+      <button class="tab t-home active" data-page="home" onclick="go('home')">Home</button>
+      <button class="tab t-resume" data-page="resume" onclick="go('resume')">Resume</button>
+      <button class="tab t-projects" data-page="projects" onclick="go('projects')">Portfolio</button>
+      <button class="tab t-about" data-page="about" onclick="go('about')">About</button>
+      <button class="tab t-contact" data-page="contact" onclick="go('contact')">Contact</button>
+    </div>
+  </div>
+</nav>
+<div class="mockup-badge">Mockup v32</div>
+
+<!-- ==================== HOME (sketch layout) ==================== -->
+<main class="page on" id="page-home">
+  <!-- full-width one-line name -->
+  <div class="namebanner"><span id="fitname">Katherine Conklin</span></div>
+
+  <div class="wrap">
+    <!-- main hook + photo -->
+    <div class="homehero2">
+      <div>
+        <h1 class="mainhook">Teaching the world to <em>pay attention.</em></h1>
+        <button class="cta" onclick="go('projects')">See the projects →</button>
+      </div>
+      <div class="photobox big"><img src="graduation_selfie.jpeg" alt="Katherine Conklin at graduation" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='block';"><span class="ph" style="display:none;">▢ graduation_selfie.jpeg</span></div>
+    </div>
+
+    <!-- the major + looking for, separate and up top -->
+    <div class="majorpanel two">
+      <div class="mp mp-lav"><b>The major</b><p>B.S. Interdisciplinary Studies from Spring Hill College — a flexible degree that integrates knowledge across fields into one personalized path. Mine combines <strong>Elementary Education</strong> and <strong>Communications</strong>.</p></div>
+      <div class="mp mp-but"><b>Right now</b><p>Social Media Manager at Zora REI, Inc. and Test Proctor at Randstad / PSEG Long Island.</p></div>
+    </div>
+
+    <div class="lookingfor solo">
+      <div class="lf-head">
+        <b>What I'm looking for</b>
+        <p>Roles where communications and education meet — where explaining something clearly, creating engaging content, and helping people learn are the whole job. Open to full-time or freelance, remote, hybrid, or on-site in the NYC metro area.</p>
+      </div>
+    </div>
+
+    <!-- expanded timeline + contact -->
+    <div class="homerow2">
+      <div class="homecard">
+        <div class="hd">The path so far</div>
+        <div class="tl-center">
+          <div class="tlc left milestone"><div class="when">June 9, 2026</div><h3>Passed the EAS (NYSTCE)</h3><p>New York's Educating All Students exam — diverse learners, students with disabilities, English language learners, and inclusive classroom practice. A key step toward NY teacher certification.</p></div>
+          <div class="tlc right d-but"><div class="when">Feb 2026–Present</div><h3>Social Media Manager — Zora REI, Inc.</h3><p>Cross-platform marketing for a growing real estate brokerage. 80K+ views in 90 days.</p></div>
+          <div class="tlc left d-blu"><div class="when">Sep 2025–Present</div><h3>Test Proctor — Randstad / PSEG Long Island</h3><p>Administers pre-employment & certification exams.</p></div>
+          <div class="tlc right d-che"><div class="when">Aug 2025–Present</div><h3>Content Creator & Sales — Cannababes</h3><p>Branded content and customer engagement (hybrid).</p></div>
+          <div class="tlc left d-hun"><div class="when">May 2025–Present</div><h3>NaturalRockShop — Huntington, NY</h3><p>Product photography, brand website & Instagram strategy.</p></div>
+
+          <div class="tlc right milestone"><div class="when">May 2025</div><h3>Graduated Spring Hill College</h3><p>B.S. Interdisciplinary Studies — Elementary Education & Communications.</p></div>
+
+          <div class="tlc left milestone"><div class="when">April 2025</div><h3>Sol Award — "Spirit of Spring Hill"</h3><p>Recognized for outstanding leadership, creativity, and dedication to campus life. Dean's List, Spring 2025.</p></div>
+
+          <div class="tlc right d-hun"><div class="when">Apr 2025</div><h3>The Badger Dash</h3><p>SGA 5K color run for St. Jude — social media lead, graphics, vendor support.</p></div>
+          <div class="tlc left d-hun"><div class="when">May–Aug 2024</div><h3>Regents Exam Proctor — First Class Tutoring</h3><p>Standardized testing & academic integrity.</p></div>
+          <div class="tlc right d-che"><div class="when">Jan–Apr 2023</div><h3>Sidewayz Sports Bar — Mobile, AL</h3><p>Bartender.</p></div>
+          <div class="tlc left d-lav"><div class="when">2022–2025</div><h3>Founded @shcpurplealert</h3><p>Campus media brand: 1,475 followers · 878,939 impressions · front-page SpringHillian coverage.</p></div>
+          <div class="tlc right d-lav"><div class="when">2022</div><h3>Transferred to Spring Hill College</h3><p>Moved to Mobile, AL to build an interdisciplinary degree — education + communications.</p></div>
+          <div class="tlc left d-che"><div class="when">2020–2022</div><h3>Loyola University Maryland</h3><p>Elementary Education — K–5 fieldwork in Baltimore public schools.</p></div>
+          <div class="tlc right d-icy"><div class="when">Summer 2017–2023</div><h3>Garden City Swimming Pool</h3><p>Seasonal staff — supervised kids and led group activities.</p></div>
+          <div class="tlc left d-blu"><div class="when">2016–2020</div><h3>Garden City High School</h3><p>Four years — graduated 2020 with a Regents Diploma.</p></div>
+          <div class="tlc right d-but"><div class="when">2016–2020</div><h3>Ace Handicraft — West Hempstead, NY</h3><p>My dad's craft store. Helped customers with craft, jewelry & DIY materials and managed inventory until it closed in early 2020.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="contactcard">
+          <div class="hd">Contact & social</div>
+          <a href="mailto:katieconklin.work@gmail.com">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            <span>katieconklin.work@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/katherine-conklin-601675307" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V9.99H6V17h2.34zM7.17 8.9a1.36 1.36 0 1 0 0-2.71 1.36 1.36 0 0 0 0 2.71zM18 17v-3.84c0-2.05-1.1-3-2.56-3-1.18 0-1.71.65-2 1.11V9.99H11.1V17h2.34v-3.9c0-.2 0-.41.07-.56.16-.41.53-.84 1.16-.84.82 0 1.15.63 1.15 1.55V17H18z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://instagram.com/katie.conklin" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span>@katie.conklin</span>
+          </a>
+          <a href="https://dot.cards/katherineconklin" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>
+            <span>dot.cards/katherineconklin</span>
+          </a>
+        </div>
+
+        <div class="decopanel" aria-hidden="true">
+          <!-- bold color blobs -->
+          <span class="blob b1"></span>
+          <span class="blob b2"></span>
+          <span class="blob b3"></span>
+          <!-- doodles -->
+          <svg class="doodle d1" viewBox="0 0 60 60" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6 C34 24 36 26 54 30 C36 34 34 36 30 54 C26 36 24 34 6 30 C24 26 26 24 30 6 Z"/></svg>
+          <svg class="doodle d2" viewBox="0 0 60 30" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round"><path d="M4 22 C14 6 22 6 30 16 C38 26 46 26 56 10"/></svg>
+          <svg class="doodle d3" viewBox="0 0 40 40" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 v10 M20 26 v10 M4 20 h10 M26 20 h10"/></svg>
+          <svg class="doodle d4" viewBox="0 0 50 50" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round"><path d="M25 6 a19 19 0 1 1 -0.1 0"/><path d="M25 14 l6 8 l-6 8" transform="rotate(20 25 25)"/></svg>
+          <svg class="doodle d5" viewBox="0 0 60 60" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8 C33 22 38 27 52 30 C38 33 33 38 30 52 C27 38 22 33 8 30 C22 27 27 22 30 8 Z"/></svg>
+          <svg class="doodle d6" viewBox="0 0 70 20" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round"><path d="M4 10 q8 -8 16 0 t16 0 t16 0 t16 0"/></svg>
+          <span class="blob b4"></span>
+          <span class="blob b5"></span>
+          <span class="blob b6"></span>
+          <svg class="doodle d7" viewBox="0 0 60 60" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6 C34 24 36 26 54 30 C36 34 34 36 30 54 C26 36 24 34 6 30 C24 26 26 24 30 6 Z"/></svg>
+          <svg class="doodle d8" viewBox="0 0 70 20" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round"><path d="M4 10 q8 -8 16 0 t16 0 t16 0 t16 0"/></svg>
+          <svg class="doodle d9" viewBox="0 0 40 40" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 v10 M20 26 v10 M4 20 h10 M26 20 h10"/></svg>
+          <svg class="doodle d10" viewBox="0 0 60 60" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8 C33 22 38 27 52 30 C38 33 33 38 30 52 C27 38 22 33 8 30 C22 27 27 22 30 8 Z"/></svg>
+          <svg class="doodle d11" viewBox="0 0 40 40" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 v10 M20 26 v10 M4 20 h10 M26 20 h10"/></svg>
+          <svg class="doodle d12" viewBox="0 0 70 20" fill="none" stroke="var(--mocha)" stroke-width="3" stroke-linecap="round"><path d="M4 10 q8 -8 16 0 t16 0 t16 0 t16 0"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:clamp(44px,6vw,72px);">
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        <span>Social strategy</span><span class="star">✦</span><span>Content creation</span><span class="star">✦</span><span>Brand building</span><span class="star">✦</span><span>Community</span><span class="star">✦</span><span>Event marketing</span><span class="star">✦</span><span>Teaching</span><span class="star">✦</span>
+        <span>Social strategy</span><span class="star">✦</span><span>Content creation</span><span class="star">✦</span><span>Brand building</span><span class="star">✦</span><span>Community</span><span class="star">✦</span><span>Event marketing</span><span class="star">✦</span><span>Teaching</span><span class="star">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap"><span>Katherine Conklin</span><span>dot.cards/katherineconklin</span></div></footer>
+</main>
+
+<!-- ==================== RESUME ==================== -->
+<main class="page" id="page-resume">
+  <header class="hero hero-icy herodeco">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--icy-ink)">Resume</div>
+      <h1>Katherine Conklin.</h1>
+      <p class="lede" style="color:var(--icy-ink);max-width:44ch;">B.S. Interdisciplinary Studies — Communications &amp; Elementary Education. Media literacy, digital content, and instructional strategy in one adaptable skill set.</p>
+      <div class="resbtns">
+        <a class="dlbtn" href="Katherine_Conklin_Resume.pdf" target="_blank" rel="noopener">Download PDF ↓</a>
+        <a class="dlbtn ghost" href="https://www.linkedin.com/in/katherine-conklin-601675307" target="_blank" rel="noopener">View LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="ha ha1" viewBox="0 0 60 60" fill="none" stroke="var(--icy-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 44 44 8l8 8-36 36-10 2z"/><path d="M38 14l8 8"/></svg>
+      <svg class="ha ha2" viewBox="0 0 60 60" fill="none" stroke="var(--icy-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6 34 22 50 22 37 32 42 48 30 38 18 48 23 32 10 22 26 22Z"/></svg>
+      <svg class="ha ha3" viewBox="0 0 60 60" fill="none" stroke="var(--icy-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="44" height="30" rx="4"/><path d="M20 48h20M30 40v8"/></svg>
+      <svg class="ha ha4" viewBox="0 0 60 60" fill="none" stroke="var(--icy-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12h40v26H32l-10 8v-8H10z"/></svg>
+    </div>
+  </header>
+  <section class="section">
+    <div class="wrap reswrap">
+      <div>
+        <div class="resblock">
+          <h3>Experience</h3>
+          <div class="resitem"><div class="top"><h4>Social Media Manager — Zora REI, Inc.</h4><span class="when">Feb 2026–Present</span></div><p>Cross-platform marketing for a growing real estate brokerage — graphics, videos, and recruitment campaigns. Collaborates with influencers to increase brand visibility, attract agents, and create trend-driven content (Garden City, NY).</p></div>
+          <div class="resitem"><div class="top"><h4>Test Proctor — PSEG Long Island</h4><span class="when">Sep 2025–Present</span></div><p>Administers and monitors pre-employment and certification exams — verifying identification, giving clear instructions, reporting irregularities, and maintaining accurate records (Bethpage, NY).</p></div>
+          <div class="resitem"><div class="top"><h4>Content Creator &amp; Sales Associate — Cannababes</h4><span class="when">Aug 2025–Present</span></div><p>Supports sales and customer engagement through in-person and online outreach; creates branded content and visuals that grew the brand's online presence (hybrid — Detroit, MI / NY branch).</p></div>
+          <div class="resitem"><div class="top"><h4>Assistant — NaturalRockShop</h4><span class="when">May 2025–Present</span></div><p>Captures and edits product photography for handcrafted jewelry, improving listing engagement; built and maintains the brand website and Instagram with a promotion-focused content strategy (hybrid — Huntington, NY).</p></div>
+          <div class="resitem"><div class="top"><h4>Regents Exam Proctor — First Class Tutoring</h4><span class="when">May–Aug 2024</span></div><p>Oversaw standardized testing procedures and enforced academic integrity; assisted with setup and breakdown of exam sessions (Brentwood, NY).</p></div>
+          <div class="resitem"><div class="top"><h4>Seasonal Staff — Garden City Swimming Pool</h4><span class="when">Summer 2017–2023</span></div><p>Supervised children and led group activities during community events; strengthened youth communication and safety-awareness skills (Garden City, NY).</p></div>
+          <div class="resitem"><div class="top"><h4>Bartender — Sidewayz Sports Bar</h4><span class="when">Jan–Apr 2023</span></div><p>Maintained a clean, organized bar area within health &amp; safety standards; managed cash and credit transactions with accuracy and accountability (Mobile, AL).</p></div>
+          <div class="resitem"><div class="top"><h4>Sales &amp; Customer Support Associate — Ace Handicraft</h4><span class="when">2017–2020</span></div><p>Provided knowledgeable help to customers selecting craft, jewelry, and DIY materials; maintained store organization and helped manage inventory (West Hempstead, NY).</p></div>
+        </div>
+
+        <div class="resblock">
+          <h3>Projects</h3>
+          <div class="resitem"><div class="top"><h4>@SHCPurpleAlert — Founder</h4><span class="when">2022–2025</span></div><p>Founded and managed a student-run Instagram account (1,000+ followers) promoting unity and campus events; earned recognition in the school newspaper.</p></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="resblock">
+          <h3>Education</h3>
+          <div class="resitem"><div class="top"><h4>Spring Hill College — B.S. Interdisciplinary Studies</h4><span class="when">May 2025</span></div><p>Concentrations: Elementary Education &amp; Communications (Mobile, AL).</p></div>
+          <div class="resitem"><div class="top"><h4>Loyola University Maryland — Undergraduate Coursework</h4><span class="when">2020–2022</span></div><p>Baltimore, MD.</p></div>
+          <div class="resitem"><div class="top"><h4>Garden City High School — Regents Diploma</h4><span class="when">2020</span></div><p>Garden City, NY.</p></div>
+        </div>
+
+        <div class="resblock">
+          <h3>Awards</h3>
+          <div class="resitem"><div class="top"><h4>"Spirit of Spring Hill" (Sol Award)</h4><span class="when">Apr 2025</span></div><p>Recognized for outstanding leadership, creativity, and dedication to campus life — selected by the Center for Student Involvement for embodying the values and spirit of the SHC community.</p></div>
+          <div class="resitem"><div class="top"><h4>Dean's List</h4><span class="when">Spring 2025</span></div></div>
+        </div>
+
+        <div class="resblock">
+          <h3>Relevant Coursework</h3>
+          <p style="font-size:.86rem;color:var(--mocha-soft);margin:.2rem 0 .5rem;"><strong>Education</strong> (all with student-teaching fieldwork): Teaching Methods &amp; Literacy · Art for Children · Survey of Exceptionality · Multicultural Teaching · Oral &amp; Written Language</p>
+          <p style="font-size:.86rem;color:var(--mocha-soft);margin:0;"><strong>Communications:</strong> Strategic Writing · Media Law · Professional Ethics · Scriptwriting for Film &amp; TV · Digital Tools · Crisis Communications</p>
+        </div>
+
+        <div class="resblock">
+          <h3>Skills</h3>
+          <span class="pill">Social media content creation</span><span class="pill">DSLR &amp; mobile video/photo</span><span class="pill">Adobe</span><span class="pill">Canva</span><span class="pill">CapCut</span><span class="pill">AI implementation</span><span class="pill">Deadline reporting</span><span class="pill">Community outreach</span><span class="pill">Leadership</span><span class="pill">Collection management</span><span class="pill">Critical thinking</span><span class="pill">Google &amp; Microsoft</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="foot"><div class="wrap"><span>Katherine Conklin</span><span>Resume</span></div></footer>
+</main>
+
+<!-- ==================== PROJECTS (two halves) ==================== -->
+<main class="page" id="page-projects">
+  <header class="hero hero-lavender projhero">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--purple-ink)">Portfolio</div>
+      <h1>The work.</h1>
+      <p class="lede" style="color:var(--purple-ink);max-width:40ch;">Communications, education, and personal projects — pick a category to explore.</p>
+    </div>
+    <!-- topic graphics -->
+    <div class="projhero-art" aria-hidden="true">
+      <svg class="pa pa1" viewBox="0 0 80 80" fill="none" stroke="var(--purple-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="16" width="60" height="44" rx="6"/><path d="M10 28 h60"/><circle cx="18" cy="22" r="2" fill="var(--purple-ink)"/><circle cx="26" cy="22" r="2" fill="var(--purple-ink)"/><path d="M22 42 l10 8 l-10 8" transform="translate(6 -8)"/></svg>
+      <svg class="pa pa2" viewBox="0 0 80 80" fill="none" stroke="var(--purple-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M40 14 L68 26 L40 38 L12 26 Z"/><path d="M20 31 v14 c0 6 40 6 40 0 v-14"/><path d="M68 26 v16"/></svg>
+      <svg class="pa pa3" viewBox="0 0 80 80" fill="none" stroke="var(--purple-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="12" width="48" height="56" rx="6"/><circle cx="40" cy="34" r="10"/><path d="M26 60 c4 -10 24 -10 28 0"/></svg>
+      <svg class="pa pa4" viewBox="0 0 60 60" fill="none" stroke="var(--purple-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8 C33 22 38 27 52 30 C38 33 33 38 30 52 C27 38 22 33 8 30 C22 27 27 22 30 8 Z"/></svg>
+      <svg class="pa pa5" viewBox="0 0 70 20" fill="none" stroke="var(--purple-ink)" stroke-width="3" stroke-linecap="round"><path d="M4 10 q8 -8 16 0 t16 0 t16 0 t16 0"/></svg>
+    </div>
+  </header>
+
+  <!-- CATEGORY LANDING (circles) -->
+  <section class="section" id="proj-landing">
+    <div class="wrap">
+      <div class="catcircles">
+        <button class="catcircle" onclick="openCat('comm')" style="--cat:var(--lavender);--catink:var(--purple-ink)">
+          <span class="cc-ring">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h32v20H20l-8 8V30H8z"/><path d="M15 18h18M15 24h12"/></svg>
+          </span>
+          <span class="cc-t">Communications</span>
+          <span class="cc-s">Media, brand &amp; content</span>
+          <span class="cc-m">Explore →</span>
+        </button>
+        <button class="catcircle" onclick="openCat('edu')" style="--cat:var(--icy);--catink:var(--icy-ink)">
+          <span class="cc-ring">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18 24 8l20 10-20 10z"/><path d="M12 22v10c0 4 24 4 24 0V22"/><path d="M44 18v10"/></svg>
+          </span>
+          <span class="cc-t">Education</span>
+          <span class="cc-s">Lesson design &amp; teaching</span>
+          <span class="cc-m">Explore →</span>
+        </button>
+        <button class="catcircle" onclick="openCat('pers')" style="--cat:var(--butter);--catink:#9a7d2f">
+          <span class="cc-ring">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6l4.6 9.3 10.3 1.5-7.4 7.3 1.7 10.2L24 39.7l-9.2 4.9 1.7-10.2-7.4-7.3 10.3-1.5z"/></svg>
+          </span>
+          <span class="cc-t">Personal</span>
+          <span class="cc-s">Everything I make</span>
+          <span class="cc-m">Explore →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNICATIONS VIEW -->
+  <section class="section catview" id="cat-comm" style="display:none;">
+    <div class="wrap">
+      <button class="catback" onclick="closeCat()">← All categories</button>
+      <div class="cathead"><span class="catside" style="background:var(--lavender)"></span><div><div class="eyebrow" style="color:var(--purple-ink);margin:0 0 .3rem;">Communications</div><h2>Media, brand &amp; content</h2></div></div>
+      <div class="brandgrid">
+        <button class="brandtile" onclick="go('purplealert')" style="--bg:var(--lavender)">
+          <span class="bt-logo"><img src="purplealertcoverart.png" alt="SHC Purple Alert badger"></span>
+          <span class="bt-cap"><span class="bt-h">SHC Purple Alert</span><span class="bt-d">Founder &amp; editor of a campus media brand — front-page press and the Badger Dash.</span><span class="bt-go">Case study →</span></span>
+        </button>
+        <button class="brandtile" onclick="go('zora')" style="--bg:#fff">
+          <span class="bt-logo"><img src="zoracoverart.jpg" alt="Zora REI, Inc. logo"></span>
+          <span class="bt-cap"><span class="bt-h">Zora REI, Inc.</span><span class="bt-d">Social media &amp; marketing manager for a growing real estate brokerage.</span><span class="bt-go">Case study →</span></span>
+        </button>
+        <button class="brandtile" onclick="go('nrs')" style="--bg:#fff">
+          <span class="bt-logo"><img src="naturalrockshopcoverart.png" alt="All Natural Rock Shop logo"></span>
+          <span class="bt-cap"><span class="bt-h">NaturalRockShop</span><span class="bt-d">My aunt's Etsy shop — photography, web &amp; brand refresh.</span><span class="bt-go">Case study →</span></span>
+        </button>
+        <button class="brandtile" onclick="go('cannababes')" style="--bg:#101010">
+          <span class="bt-logo"><img src="cannababecoverart.png" alt="Cannababe logo"></span>
+          <span class="bt-cap"><span class="bt-h">Cannababes</span><span class="bt-d">Trained brand representative — Unity Fest and in-person events.</span><span class="bt-go">Case study →</span></span>
+        </button>
+        <button class="brandtile" onclick="go('sugared')" style="--bg:#fff">
+          <span class="bt-logo"><img src="sugaredcoverart.png" alt="Sugared Beauty Bar logo"></span>
+          <span class="bt-cap"><span class="bt-h">Sugared Beauty Bar</span><span class="bt-d">Interview design challenge — 12 posts and 2 carousels in under 48 hours.</span><span class="bt-go">Case study →</span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION VIEW -->
+  <section class="section catview" id="cat-edu" style="display:none;">
+    <div class="wrap">
+      <button class="catback" onclick="closeCat()">← All categories</button>
+      <div class="cathead"><span class="catside" style="background:var(--icy)"></span><div><div class="eyebrow" style="color:var(--icy-ink);margin:0 0 .3rem;">Education</div><h2>Lesson design &amp; teaching</h2></div></div>
+      <p style="color:var(--mocha-soft);max-width:62ch;margin:0 0 1.8rem;">Lessons and case studies I designed during student-teaching fieldwork across my Elementary Education coursework. Open any one for the full breakdown — objective, approach, examples, and reflection. <em>(More from earlier semesters is on the way.)</em></p>
+      <div class="lessongrid2">
+        <button class="lcard" onclick="go('lesson-phono')" style="--lc:var(--icy);--lci:var(--icy-ink)">
+          <span class="lc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18.5" cy="16" r="2.5"/><path d="M21 18.5 22.5 20"/></svg></span>
+          <span class="lc-tag">Reading · EDU 325</span>
+          <span class="lc-h">Phonological Awareness</span>
+          <span class="lc-d">Decoding multisyllabic words through syllables, morphemes &amp; phonemes.</span>
+          <span class="lc-go">View lesson →</span>
+        </button>
+        <button class="lcard" onclick="go('lesson-charlotte')" style="--lc:var(--cherry);--lci:#a14d61">
+          <span class="lc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v6h6"/><path d="M8 13h6M8 17h4"/></svg></span>
+          <span class="lc-tag">Vocabulary · ELA 5.4</span>
+          <span class="lc-h">Context Clues in <em>Charlotte's Web</em></span>
+          <span class="lc-d">Using context to infer word meaning — radiant, humbly, summon.</span>
+          <span class="lc-go">View lesson →</span>
+        </button>
+        <button class="lcard" onclick="go('lesson-outsiders')" style="--lc:var(--butter);--lci:#7a5f1f">
+          <span class="lc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg></span>
+          <span class="lc-tag">ELA + Social Studies · 5.8 / 5.5</span>
+          <span class="lc-h">Resilience in <em>The Outsiders</em></span>
+          <span class="lc-d">Interdisciplinary character analysis of Ponyboy &amp; the church-fire scene.</span>
+          <span class="lc-go">View lesson →</span>
+        </button>
+        <button class="lcard" onclick="go('lesson-litcircles')" style="--lc:var(--lavender);--lci:var(--purple-ink)">
+          <span class="lc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-1.5-1.3-3.5-2-6-2v13c2.5 0 4.5.7 6 2 1.5-1.3 3.5-2 6-2V4c-2.5 0-4.5.7-6 2Z"/><path d="M12 6v13"/></svg></span>
+          <span class="lc-tag">Full 4-week unit · EDU 332</span>
+          <span class="lc-h">Literature Circles: Resilience</span>
+          <span class="lc-d">Three books, five student roles, one theme — a complete unit.</span>
+          <span class="lc-go">View unit →</span>
+        </button>
+        <button class="lcard" onclick="go('lesson-iep')" style="--lc:var(--hunter);--lci:#fff;--lcdark:1">
+          <span class="lc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6a1 1 0 0 1 1 1v2H8V4a1 1 0 0 1 1-1Z"/><path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="m9 14 2 2 4-4"/></svg></span>
+          <span class="lc-tag">Special Ed · EDU 370</span>
+          <span class="lc-h">IEP Case Study</span>
+          <span class="lc-d">A complete Individualized Education Program, written end to end.</span>
+          <span class="lc-go">View case study →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL VIEW -->
+  <section class="section catview" id="cat-pers" style="display:none;">
+    <div class="wrap">
+      <button class="catback" onclick="closeCat()">← All categories</button>
+      <div class="cathead"><span class="catside" style="background:var(--butter)"></span><div><div class="eyebrow" style="color:#9a7d2f;margin:0 0 .3rem;">Personal</div><h2>Everything I make</h2></div></div>
+      <p style="color:var(--mocha-soft);max-width:62ch;margin:0 0 1.8rem;">The things I create because I want to — writing, art (digital and physical), photography, and music. Open the writing pieces to read real excerpts.</p>
+      <div class="imgtilegrid">
+        <button class="itile" onclick="go('write-shores')" style="--accent:var(--lavender)">
+          <span class="it-img" style="background:linear-gradient(135deg,#8ea2d8,#c7b4dd)"><span class="it-ph">✎ Timeless Shores</span></span>
+          <span class="it-info"><span class="it-h">Timeless Shores</span><span class="it-d">An original TV pilot — siblings dig up a device on the beach and fall through time.</span><span class="it-tag">Read excerpt →</span></span>
+        </button>
+        <button class="itile" onclick="go('write-monkey')" style="--accent:var(--bluegrey)">
+          <span class="it-img" style="background:linear-gradient(135deg,#5e6f8c,#8a9bb5)"><span class="it-ph">§ Media Ethics</span></span>
+          <span class="it-info"><span class="it-h">"Coolest Monkey" Essay</span><span class="it-d">A media-ethics paper I'm proud of — the Potter Box applied to a real ad scandal.</span><span class="it-tag">Read excerpt →</span></span>
+        </button>
+        <button class="itile" style="--accent:var(--butter)">
+          <span class="it-img" style="background:linear-gradient(135deg,var(--butter),var(--cherry))"><span class="it-ph">▢ photography-cover.jpg</span></span>
+          <span class="it-info"><span class="it-h">Photography</span><span class="it-d">Portrait, product, and event photography — a growing personal body of work.</span><span class="it-tag">Gallery coming soon</span></span>
+        </button>
+        <button class="itile soon" style="--accent:var(--cherry)">
+          <span class="it-img" style="background:linear-gradient(135deg,var(--cherry),var(--lavender))"><span class="it-ph">🎨</span></span>
+          <span class="it-info"><span class="it-h">Art <span class="soontag">Soon</span></span><span class="it-d">Digital and physical artwork I've made.</span></span>
+        </button>
+        <button class="itile soon" style="--accent:var(--lime)">
+          <span class="it-img" style="background:linear-gradient(135deg,var(--lime),var(--icy))"><span class="it-ph">🎵</span></span>
+          <span class="it-info"><span class="it-h">Music <span class="soontag">Soon</span></span><span class="it-d">Original songs and covers in the works.</span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap"><span>Katherine Conklin</span><span>Portfolio</span></div></footer>
+</main>
+
+<!-- ==================== EDUCATION LESSON PAGES ==================== -->
+<main class="page" id="page-lesson-phono">
+  <header class="hero" style="background:var(--icy);">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('edu')" style="color:var(--icy-ink);">← Education</button>
+      <div class="eyebrow" style="color:var(--icy-ink)">Lesson · 5th grade reading</div>
+      <h1>Phonological Awareness</h1>
+      <p class="lede" style="color:var(--icy-ink);max-width:34ch;">Breaking down words we don't understand.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Grade</span><span class="v">5th · Student Teaching</span></div>
+        <div class="cell-m"><span class="k">Standard</span><span class="v">Alabama COS — decoding</span></div>
+        <div class="cell-m"><span class="k">Time</span><span class="v">35 minutes</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>The objective</h2>
+      <p>Students use syllables, prefixes, suffixes, and root words to segment, blend, and manipulate sounds in multisyllabic words — building a repeatable strategy for decoding unfamiliar words instead of guessing or skipping them.</p>
+      <div class="lchips"><span class="pill">Gradual Release</span><span class="pill">Morphology</span><span class="pill">Differentiation</span><span class="pill">Hands-on</span></div>
+    </div>
+    <div class="lblock">
+      <h2>How I taught it</h2>
+      <p>I built the lesson on the I&nbsp;Do&nbsp;/ We&nbsp;Do&nbsp;/ You&nbsp;Do gradual-release model, so students moved from watching to guided practice to working on their own.</p>
+      <div class="lstep"><span class="sn">1</span><span class="st"><b>I Do — model it</b><p>I displayed <em>unbelievable</em> and broke it into morphemes: prefix <em>un-</em> ("not"), root <em>believe</em>, suffix <em>-able</em> ("able to") — then blended the parts back and explained the meaning: "not able to believe."</p></span></div>
+      <div class="lstep"><span class="sn">2</span><span class="st"><b>We Do — together</b><p>As a class we worked through <em>reconstruction</em> and <em>misunderstanding</em> using sentence strips, asking how a prefix like "re-" changes meaning in a real sentence.</p></span></div>
+      <div class="lstep"><span class="sn">3</span><span class="st"><b>You Do — on their own</b><p>Small groups got five multisyllabic words to break into syllables, morphemes, and phonemes, then used each in a sentence that showed its meaning.</p></span></div>
+    </div>
+    <div class="lblock">
+      <h2>An example from the lesson</h2>
+      <p>The morpheme reference chart students worked from — the heart of the strategy:</p>
+      <table class="ltable">
+        <tr><th>Word</th><th>Prefix</th><th>Root</th><th>Suffix</th><th>Meaning</th></tr>
+        <tr><td>Unbelievable</td><td>un- (not)</td><td>believe</td><td>-able</td><td>Not able to believe</td></tr>
+        <tr><td>Reconstruction</td><td>re- (again)</td><td>construct</td><td>-ion</td><td>Act of building again</td></tr>
+        <tr><td>Misunderstanding</td><td>mis- (wrong)</td><td>understand</td><td>-ing</td><td>Understanding wrongly</td></tr>
+        <tr><td>Inconceivable</td><td>in- (not)</td><td>conceive</td><td>-able</td><td>Not able to imagine</td></tr>
+      </table>
+    </div>
+    <div class="lblock">
+      <h2>What I learned</h2>
+      <div class="callout"><b>Reflection</b><p>Students engaged strongly with the hands-on segmentation, but my reflection flagged pacing — independent practice needed a few more minutes. So I built an adapted, low-materials version that swaps physical word cards for a printed worksheet, keeping the same structure with less setup. Reflecting and revising the lesson afterward is the part I'm proudest of.</p></div>
+    </div>
+    <div class="pdfrow">
+      <span class="pdfic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg></span>
+      <span class="pdft"><b>Full lesson plan</b><span>Objective, materials, full procedure, morpheme chart &amp; reflection</span></span>
+      <a href="lesson-phonological-awareness.pdf" target="_blank">Download PDF</a>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('projects');openCat('edu')"><span class="lbl">← Back</span>All lessons</a>
+    <a class="next" onclick="go('lesson-charlotte')"><span class="lbl">Next →</span>Charlotte's Web</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-lesson-charlotte">
+  <header class="hero" style="background:var(--cherry);">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('edu')" style="color:#a14d61;">← Education</button>
+      <div class="eyebrow" style="color:#a14d61">Mini-lesson · Vocabulary</div>
+      <h1>Context Clues in <em style="font-style:italic;">Charlotte's Web</em></h1>
+      <p class="lede" style="color:#a14d61;max-width:36ch;">Teaching kids to figure out a word from the story around it — figuring things out based on what's around us.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Grade</span><span class="v">5th · Student Teaching</span></div>
+        <div class="cell-m"><span class="k">Standard</span><span class="v">ELA 5.4 — context clues</span></div>
+        <div class="cell-m"><span class="k">Text</span><span class="v">Charlotte's Web, Ch. 10</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>The objective</h2>
+      <p>Students use context clues to determine the meaning of three challenging words from <em>Charlotte's Web</em> — <strong>radiant</strong>, <strong>humbly</strong>, and <strong>summon</strong> — chosen deliberately for their range of difficulty so the lesson could differentiate across readers.</p>
+      <div class="lchips"><span class="pill">Context clues</span><span class="pill">Read-aloud</span><span class="pill">Differentiation</span><span class="pill">Visual supports</span></div>
+    </div>
+    <div class="lblock">
+      <h2>How I taught it</h2>
+      <div class="lstep"><span class="sn">1</span><span class="st"><b>Pre-reading</b><p>I wrote the three words on the board and asked students what they thought each meant — activating curiosity before we opened the book.</p></span></div>
+      <div class="lstep"><span class="sn">2</span><span class="st"><b>During reading</b><p>We read the passage aloud together, pausing at each word. For "radiant," I asked what Charlotte was feeling in the scene and how we could tell — pointing students to the surrounding text for evidence.</p></span></div>
+      <div class="lstep"><span class="sn">3</span><span class="st"><b>Post-reading</b><p>Students completed a worksheet: write the word, infer its meaning from context, then write their own definition. We reviewed answers as a class.</p></span></div>
+    </div>
+    <div class="lblock">
+      <h2>The moment it clicked</h2>
+      <div class="callout" style="border-left-color:var(--cherry);"><b>Radiant</b><p>When we analyzed "radiant," students connected it to Charlotte's mood in the scene rather than reaching for a memorized definition — exactly the transfer the lesson was designed to produce. The interactive discussion was the clear strength.</p></div>
+    </div>
+    <div class="lblock">
+      <h2>What I'd change</h2>
+      <p>Next time I'd add a quick think-pair-share before the whole-class discussion, so quieter students build confidence with a partner before sharing out. A glowing-web visual supported visual learners and I'd lean on that kind of scaffold even more.</p>
+    </div>
+    <div class="pdfrow">
+      <span class="pdfic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg></span>
+      <span class="pdft"><b>Full lesson plan</b><span>Objective, materials, procedure, assessment &amp; reflection</span></span>
+      <a href="lesson-charlottes-web-vocabulary.pdf" target="_blank">Download PDF</a>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('lesson-phono')"><span class="lbl">← Previous</span>Phonological Awareness</a>
+    <a class="next" onclick="go('lesson-outsiders')"><span class="lbl">Next →</span>The Outsiders</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-lesson-outsiders">
+  <header class="hero" style="background:var(--butter);">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('edu')" style="color:#7a5f1f;">← Education</button>
+      <div class="eyebrow" style="color:#7a5f1f">Lesson · ELA + Social Studies</div>
+      <h1>Resilience in <em style="font-style:italic;">The Outsiders</em></h1>
+      <p class="lede" style="color:#7a5f1f;max-width:36ch;">Connecting a character to real history.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Grade</span><span class="v">5th · Student Teaching</span></div>
+        <div class="cell-m"><span class="k">Standards</span><span class="v">ELA 5.8 · SS 5.5</span></div>
+        <div class="cell-m"><span class="k">Text</span><span class="v">The Outsiders, Ch. 4</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>The objective</h2>
+      <p>Students analyze how Ponyboy Curtis demonstrates resilience through his relationships and challenges — then connect that theme to real historical figures, bridging English Language Arts and Social Studies in a single interdisciplinary lesson.</p>
+      <div class="lchips"><span class="pill">Interdisciplinary</span><span class="pill">Character analysis</span><span class="pill">Graphic organizer</span><span class="pill">Reflective writing</span></div>
+    </div>
+    <div class="lblock">
+      <h2>How I taught it</h2>
+      <div class="lstep"><span class="sn">1</span><span class="st"><b>Pre-reading</b><p>I opened with an image of resilience — a historical figure or athlete overcoming a challenge — and asked students about a time they had to stay calm under pressure.</p></span></div>
+      <div class="lstep"><span class="sn">2</span><span class="st"><b>During reading</b><p>We read the church-fire rescue scene together, pausing for guided questions, while students filled in a character map: the challenge, the traits Ponyboy shows, and the outcome.</p></span></div>
+      <div class="lstep"><span class="sn">3</span><span class="st"><b>Post-reading</b><p>A group discussion compared Ponyboy's resilience to real figures like Rosa Parks or Jackie Robinson, then students wrote a short reflection applying resilience to their own lives.</p></span></div>
+    </div>
+    <div class="lblock">
+      <h2>The character map</h2>
+      <p>The organizer that anchored the analysis:</p>
+      <table class="ltable">
+        <tr><th>Challenge</th><th>Traits demonstrated</th><th>Outcome</th></tr>
+        <tr><td>The church-fire rescue</td><td>Bravery, selflessness</td><td>Ponyboy grows through the experience, deepening his sense of purpose</td></tr>
+      </table>
+    </div>
+    <div class="lblock">
+      <h2>What I learned</h2>
+      <div class="callout" style="border-left-color:var(--butter);"><b>Reflection</b><p>The guided reading and character map kept students engaged with the text. Some needed more scaffolding for the reflective writing — so my takeaway was to add sentence starters and a modeled example next time. This single-day lesson later became the seed for one book in my full Literature Circles unit.</p></div>
+    </div>
+    <div class="pdfrow">
+      <span class="pdfic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg></span>
+      <span class="pdft"><b>Full lesson plan</b><span>Objective, materials, procedure, character map &amp; reflection</span></span>
+      <a href="lesson-outsiders-resilience.pdf" target="_blank">Download PDF</a>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('lesson-charlotte')"><span class="lbl">← Previous</span>Charlotte's Web</a>
+    <a class="next" onclick="go('lesson-litcircles')"><span class="lbl">Next →</span>Literature Circles</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-lesson-litcircles">
+  <header class="hero" style="background:var(--lavender);">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('edu')" style="color:var(--purple-ink);">← Education</button>
+      <div class="eyebrow" style="color:var(--purple-ink)">Full unit · 4 weeks</div>
+      <h1>Literature Circles: Exploring Resilience</h1>
+      <p class="lede" style="color:var(--purple-ink);max-width:40ch;">3 books, 5 student roles, 1 theme.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Course</span><span class="v">EDU 332 · Reading Strategies</span></div>
+        <div class="cell-m"><span class="k">Standards</span><span class="v">ELA 5.8 &amp; 5.4 · SS 5.5</span></div>
+        <div class="cell-m"><span class="k">Structure</span><span class="v">2× weekly · 4 weeks</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>The big picture</h2>
+      <p>This is a full four-week unit built around a single theme — resilience — explored across three trade books. Students meet in small groups twice a week, each taking a rotating role, then connect the theme back to their own lives. It's the largest instructional design project in my portfolio, and it uses my Outsiders lesson as one piece of a bigger structure.</p>
+      <div class="lchips"><span class="pill">Unit design</span><span class="pill">Small-group instruction</span><span class="pill">Rubrics</span><span class="pill">Differentiation</span></div>
+    </div>
+    <div class="lblock">
+      <h2>The three books</h2>
+      <table class="ltable">
+        <tr><th>Book</th><th>Author</th><th>Resilience angle</th></tr>
+        <tr><td>The Hunger Games</td><td>Suzanne Collins</td><td>Survival, courage &amp; strategy in a dystopian world</td></tr>
+        <tr><td>The Outsiders</td><td>S.E. Hinton</td><td>Facing prejudice; family &amp; self-discovery</td></tr>
+        <tr><td>Charlotte's Web</td><td>E.B. White</td><td>Friendship &amp; perseverance</td></tr>
+      </table>
+    </div>
+    <div class="lblock">
+      <h2>Five student roles</h2>
+      <p>Each group member takes a role with its own scaffolded worksheet, and roles rotate so everyone practices every skill:</p>
+      <div class="rolegrid">
+        <div class="rolebox"><b>Discussion Director</b><span>Prepares open-ended "what if / why" questions</span></div>
+        <div class="rolebox"><b>Summarizer</b><span>Recaps key events, characters &amp; themes</span></div>
+        <div class="rolebox"><b>Connector</b><span>Links the text to life, history &amp; other books</span></div>
+        <div class="rolebox"><b>Vocabulary Enricher</b><span>Explains challenging words from the text</span></div>
+        <div class="rolebox"><b>Illustrator</b><span>Visualizes a key moment or theme</span></div>
+      </div>
+    </div>
+    <div class="lblock">
+      <h2>Built-in differentiation</h2>
+      <div class="callout" style="border-left-color:var(--lavender);"><b>Designed for every reader</b><p>Struggling readers are paired with peers for support, visual aids reinforce key concepts, and sentence starters scaffold the reflective writing. A Character Resilience Map and Reflection Journal run through the whole unit, and a role-specific rubric makes participation measurable.</p></div>
+    </div>
+    <div class="pdfrow">
+      <span class="pdfic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg></span>
+      <span class="pdft"><b>Full unit plan</b><span>Books, roles, scaffolds, assessment &amp; reflection questions</span></span>
+      <a href="lesson-literature-circles-resilience.pdf" target="_blank">Download PDF</a>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('lesson-outsiders')"><span class="lbl">← Previous</span>The Outsiders</a>
+    <a class="next" onclick="go('lesson-iep')"><span class="lbl">Next →</span>IEP Case Study</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-lesson-iep">
+  <header class="hero hero-hunter">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('edu')" style="color:#cfe3d4;">← Education</button>
+      <div class="eyebrow" style="color:var(--butter)">Case study · Special education</div>
+      <h1>IEP Case Study</h1>
+      <p class="lede" style="color:#cfe3d4;max-width:38ch;">Writing a full Individualized Education Program — goals, services, and a real intervention plan.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Course</span><span class="v">EDU 370 · Survey of Exceptionality</span></div>
+        <div class="cell-m"><span class="k">Student</span><span class="v">5th grade · Conduct Disorder</span></div>
+        <div class="cell-m"><span class="k">Scope</span><span class="v">Full IEP + BIP</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>What it is</h2>
+      <p>A complete Individualized Education Program written end-to-end for a case-study student — a 5th grader presenting with Conduct Disorder. Not just a list of accommodations, but the full document: present levels of performance, measurable annual goals, related services, and a behavior intervention plan. It's the clearest evidence I have of inclusive planning in writing.</p>
+      <div class="lchips"><span class="pill">Special education</span><span class="pill">Goal-writing</span><span class="pill">Behavior intervention</span><span class="pill">Accommodations</span></div>
+    </div>
+    <div class="lblock">
+      <h2>Measurable goals</h2>
+      <p>Every goal is written to be observed and tracked — the standard IEP requires:</p>
+      <div class="rolegrid">
+        <div class="rolebox"><b>Behavioral / social-emotional</b><span>Use coping strategies to cut behavioral referrals by 50%, tracked via teacher reports</span></div>
+        <div class="rolebox"><b>Academic</b><span>Complete 80% of classwork across subjects with supports in place</span></div>
+        <div class="rolebox"><b>Social skills</b><span>Positive peer interactions in structured settings 75% of the time</span></div>
+        <div class="rolebox"><b>Progress monitoring</b><span>Bi-weekly behavior data, quarterly IEP-team review</span></div>
+      </div>
+    </div>
+    <div class="lblock">
+      <h2>Accommodations &amp; the behavior plan</h2>
+      <p>The IEP pairs classroom accommodations — preferential seating, structured routines, break cards, behavior contracts, daily check-ins — with a full Behavior Intervention Plan.</p>
+      <div class="callout" style="border-left-color:var(--hunter);"><b>The BIP, in brief</b><p>Identifies the target behaviors and their triggers (changes in routine, perceived unfairness, academic frustration), lays out proactive strategies and de-escalation interventions, and includes a crisis plan with a restorative follow-up — so the response is planned in advance, not improvised.</p></div>
+    </div>
+    <div class="lblock">
+      <h2>Why it matters to me</h2>
+      <p>My mom is a special-education home-instruction teacher, so inclusive planning isn't abstract to me. Writing a complete IEP — goals, services, and intervention plan together — is where my belief that every learner deserves a real plan shows up on paper.</p>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('lesson-litcircles')"><span class="lbl">← Previous</span>Literature Circles</a>
+    <a class="next" onclick="go('projects');openCat('edu')"><span class="lbl">Back →</span>All lessons</a>
+  </div></div></nav>
+</main>
+
+<!-- ==================== PERSONAL WRITING PAGES ==================== -->
+<main class="page" id="page-write-shores">
+  <header class="hero" style="background:var(--lavender);">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('pers')" style="color:var(--purple-ink);">← Personal</button>
+      <div class="eyebrow" style="color:var(--purple-ink)">Original pilot · Screenwriting</div>
+      <h1>Timeless Shores</h1>
+      <p class="lede" style="color:var(--purple-ink);max-width:40ch;">Two siblings, one buried device, and a fall through time — a TV pilot I wrote from scratch.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Format</span><span class="v">Television pilot</span></div>
+        <div class="cell-m"><span class="k">Genre</span><span class="v">Family · time travel</span></div>
+        <div class="cell-m"><span class="k">Status</span><span class="v">Draft</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>The premise</h2>
+      <p>Two siblings dig up a strange device on the beach behind their house and are flung across time — from a 1920s carnival to the age of dinosaurs — racing to find their way home before their parents ever notice they're gone. <strong>Chrona</strong> (14) is serious and always has a plan; <strong>Kairos</strong> (11) is carefree and chases crabs instead of treasure.</p>
+      <div class="lchips"><span class="pill">Original work</span><span class="pill">Three-act structure</span><span class="pill">Character voice</span><span class="pill">Season hook</span></div>
+    </div>
+    <div class="lblock">
+      <h2>Excerpt — the opening</h2>
+      <div class="script">
+        <p class="slug">Fade in:</p>
+        <p class="slug">Ext. Eureka Point Beach — Sunrise</p>
+        <p class="action">Waves crash against the shore. The sun rises over the small coastal town of Eureka Point, casting a golden glow on the dunes.</p>
+        <p class="action">CHRONA (14, serious, focused) kneels in the sand with a metal detector, scanning methodically. Beside her, KAIROS (11, carefree, impulsive) chases a crab.</p>
+        <p class="cue">Chrona</p>
+        <p class="dlg">Kairos, could you please focus for five minutes?</p>
+        <p class="cue">Kairos</p>
+        <p class="dlg">I am focused. On not dying of boredom.</p>
+        <p class="action">The metal detector BEEPS. Kairos darts over, digging, and pulls out a rusted metal object.</p>
+        <p class="cue">Kairos</p>
+        <p class="dlg">An ancient artifact! Or... a rusty can.</p>
+        <p class="action">His hand brushes something else buried — a sleek metallic device covered in strange symbols, totally out of place. He presses a button. A faint HUM begins, the air SHIMMERS, and the siblings DISAPPEAR.</p>
+        <p class="slug">Ext. 1920s Eureka Point — Night</p>
+        <p class="action">The siblings land in the middle of a bustling carnival — bright lights, jazzy music, colorful tents.</p>
+        <p class="cue">Chrona</p>
+        <p class="paren">(whispering)</p>
+        <p class="dlg">We're in the past. And we need to get back. Now.</p>
+      </div>
+    </div>
+    <div class="lblock">
+      <h2>The craft behind it</h2>
+      <p>The script leans on <strong>voice contrast</strong> — Chrona's focus against Kairos's impulsiveness — to carry exposition through banter instead of narration. It follows a classic <strong>three-act structure</strong> spread across three time periods, and plants a <strong>mystery hook</strong> in the final image: a stranger, Ms. Calypso, watching from her window holding a device just like theirs — a thread meant to pull a whole season forward.</p>
+    </div>
+    <div class="pdfrow">
+      <span class="pdfic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg></span>
+      <span class="pdft"><b>Read the full excerpt</b><span>Formatted script pages with logline, characters &amp; craft notes</span></span>
+      <a href="writing-timeless-shores.pdf" target="_blank">Download PDF</a>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('projects');openCat('pers')"><span class="lbl">← Back</span>Personal</a>
+    <a class="next" onclick="go('write-monkey')"><span class="lbl">Next →</span>Media Ethics Essay</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-write-monkey">
+  <header class="hero hero-bluegrey">
+    <div class="wrap">
+      <button class="catback" onclick="go('projects');openCat('pers')" style="color:#e3ecf8;">← Personal</button>
+      <div class="eyebrow" style="color:var(--butter)">Academic writing · CMM324</div>
+      <h1>The Coolest Monkey Controversy</h1>
+      <p class="lede" style="color:#e3ecf8;max-width:42ch;">A media-ethics paper I'm proud of — using the Potter Box to dissect a real corporate scandal.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Course</span><span class="v">Media Law &amp; Professional Ethics</span></div>
+        <div class="cell-m"><span class="k">Framework</span><span class="v">The Potter Box</span></div>
+        <div class="cell-m"><span class="k">Case</span><span class="v">H&amp;M, January 2018</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap lessonbody">
+    <div class="lblock">
+      <h2>What it argues</h2>
+      <p>In January 2018, H&amp;M faced international backlash for featuring a young Black boy modeling a hoodie reading "Coolest Monkey in the Jungle." My paper uses the Potter Box model of moral reasoning to trace how the brand failed its ethical obligations — and why the case is now taught as a cautionary tale about representation, corporate accountability, and children in media.</p>
+      <div class="lchips"><span class="pill">Media ethics</span><span class="pill">Potter Box</span><span class="pill">PR responsibility</span><span class="pill">Analysis</span></div>
+    </div>
+    <div class="lblock">
+      <h2>From the introduction</h2>
+      <div class="essayquote"><p>"While H&amp;M claimed no malicious intent, the ad was widely criticized for its racial insensitivity and disregard for the historical use of 'monkey' as a racial slur. The incident underscores how much context matters in advertising — and the harm caused when stereotypes are perpetuated, even unintentionally."</p></div>
+    </div>
+    <div class="lblock">
+      <h2>The Potter Box, applied</h2>
+      <p>The paper works through all four quadrants of the framework:</p>
+      <div class="potter">
+        <div class="potterbox"><b>Define the issue</b><span>A Black child modeling a garment with a phrase historically weaponized as a slur — a failure of cultural awareness.</span></div>
+        <div class="potterbox"><b>Identify values</b><span>Corporate image and profit set against cultural sensitivity, social responsibility, and public accountability.</span></div>
+        <div class="potterbox"><b>Apply principles</b><span>Utilitarian, Kantian, and virtue-ethics lenses — each showing where the decision broke down.</span></div>
+        <div class="potterbox"><b>Choose loyalties</b><span>Loyalty landed with internal marketing goals over the brand's diverse customers — a breach of public trust.</span></div>
+      </div>
+    </div>
+    <div class="lblock">
+      <h2>Why it stuck with me</h2>
+      <p>Because the model is a child — a protected class in media ethics — the paper argues that PR responsibility isn't about managing a crisis after it happens, but preventing it through more inclusive review before a campaign ever airs. That's a lesson I carry into the real brand work I do now: representation matters, and ethics aren't optional.</p>
+    </div>
+    <div class="pdfrow">
+      <span class="pdfic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/></svg></span>
+      <span class="pdft"><b>Read the full paper</b><span>Six-section analysis with introduction, framework &amp; conclusion</span></span>
+      <a href="writing-media-ethics-paper.pdf" target="_blank">Download PDF</a>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('write-shores')"><span class="lbl">← Previous</span>Timeless Shores</a>
+    <a class="next" onclick="go('projects');openCat('pers')"><span class="lbl">Back →</span>Personal</a>
+  </div></div></nav>
+</main>
+
+<!-- ==================== CASE STUDIES (unchanged structure, retargeted nav) ==================== -->
+<main class="page" id="page-zora">
+  <header class="hero hero-mocha">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--butter)">Case study · Current role</div>
+      <h1>Zora REI, Inc.</h1>
+      <p class="lede" style="color:var(--thistle);max-width:30ch;">Building a real estate brand's voice — one reel at a time.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Role</span><span class="v">Social Media / Marketing Manager</span></div>
+        <div class="cell-m"><span class="k">Platforms</span><span class="v">Instagram · TikTok</span></div>
+        <div class="cell-m"><span class="k">Status</span><span class="v">Ongoing</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap cols2">
+    <div><div class="eyebrow" style="color:var(--butter)">My role</div><h2>The full marketing engine for a growing brokerage.</h2></div>
+    <div>
+      <p>At Zora REI I do cross-platform marketing for a real estate brokerage that's actively growing every day — which means the role isn't just "post content," it's building the systems and creative that support growth on several fronts at once.</p>
+      <p>Day to day that includes designing graphics for listings and brand campaigns, producing short-form video for Instagram and TikTok, and building out recruitment campaigns aimed at bringing new agents onto the team — real estate marketing has to sell the brokerage to agents as much as it sells homes to buyers. I also manage paid social — boosting top-performing posts and running targeted ad campaigns — and lead influencer collaborations to put the brand in front of new audiences and keep the content feeling current rather than corporate.</p>
+      <p>It's the role where every skill from the rest of this portfolio shows up at once: the visual instincts from Purple Alert, the brand-voice consistency from Sugared, and the comfort working inside a fast-moving, growth-focused company.</p>
+      <div style="margin-top:1rem;"><span class="pill">Cross-platform strategy</span><span class="pill">Graphic design</span><span class="pill">Short-form video</span><span class="pill">Paid social ads</span><span class="pill">Recruitment campaigns</span><span class="pill">Influencer partnerships</span></div>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="statgrid no-ring">
+      <div class="stat"><div class="n">80.3K</div><div class="l">Views (90 days)</div></div>
+      <div class="stat"><div class="n">8.6K</div><div class="l">Accounts reached</div></div>
+      <div class="stat"><div class="n">514</div><div class="l">Followers (+13%)</div></div>
+      <div class="stat"><div class="n">16.5K</div><div class="l">Top post views</div></div>
+    </div>
+    <p style="font-size:.76rem;color:var(--mocha-soft);margin:.8rem 0 0;">Source: Instagram Insights, 90-day window (Apr 28–Jul 26).</p>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap cols2">
+    <div><div class="eyebrow" style="color:var(--icy-ink)">Paid social</div><h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem);">Boosting what already works.</h2></div>
+    <div>
+      <p>Beyond organic content, I run paid ad campaigns to extend the reach of top-performing posts — most recently a recruitment ad that pulled <strong>15,506 views</strong>, <strong>5,343 reach</strong>, and <strong>97 link clicks</strong> from a single boosted post. Knowing which organic post is worth putting budget behind is its own skill — the strongest hiring post this quarter earned <strong>16.5K total views</strong> once boosted, more than 8× its organic reach.</p>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--icy-ink)">Selected work</div>
+    <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:.6rem;">Reels I produced for Zora.</h2>
+    <p style="color:var(--mocha-soft);max-width:60ch;margin:0 0 1.2rem;">A few examples of the short-form video I've shot, edited, and published across the brand's Instagram and TikTok — listings, brand moments, and recruitment content.</p>
+    <div class="platformlinks">
+      <a class="platformbtn ig" href="https://www.instagram.com/zora.rei/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.24 3 .58a5.6 5.6 0 0 1 2.06 1.34 5.6 5.6 0 0 1 1.34 2.06c.34.8.52 1.8.58 3 .06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.24 2.2-.58 3a5.6 5.6 0 0 1-1.34 2.06 5.6 5.6 0 0 1-2.06 1.34c-.8.34-1.8.52-3 .58-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.24-3-.58a5.6 5.6 0 0 1-2.06-1.34 5.6 5.6 0 0 1-1.34-2.06c-.34-.8-.52-1.8-.58-3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.24-2.2.58-3A5.6 5.6 0 0 1 4.19 2.04 5.6 5.6 0 0 1 6.25.7c.8-.34 1.8-.52 3-.58C10.55 0 10.95 0 14.15 0Zm-.15 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm7.25-.65a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" transform="translate(0 2)"/></svg>Instagram — @zora.rei</a>
+      <a class="platformbtn tt" href="https://www.tiktok.com/@zora.rei" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16.6 5.82a4.28 4.28 0 0 1-3.14-4.06h-3.12v14.7a2.6 2.6 0 1 1-1.86-2.49V10.7a5.6 5.6 0 1 0 4.98 5.57V9.4a7.4 7.4 0 0 0 4.55 1.56V7.86a4.28 4.28 0 0 1-1.41-2.04Z"/></svg>TikTok — @zora.rei</a>
+    </div>
+    <div class="reelgrid reelgrid-curated">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYf0DmHqRjW/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DYf0DmHqRjW/" target="_blank" rel="noopener">View this post on Instagram →</a></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbMnrBVsuG2/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DbMnrBVsuG2/" target="_blank" rel="noopener">View this reel on Instagram →</a></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Da6P-RcqREj/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Da6P-RcqREj/" target="_blank" rel="noopener">View this reel on Instagram →</a></blockquote>
+    </div>
+    <p class="reel-note">Reels load from Instagram — they'll appear when the site is live online. <a href="https://www.instagram.com/zora.rei/" target="_blank" rel="noopener">See more on Instagram ↗</a></p>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('projects')"><span class="lbl">← All work</span>Portfolio</a>
+    <a class="next" onclick="go('nrs')"><span class="lbl">Next →</span>NaturalRockShop</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-nrs">
+  <header class="hero hero-hunter">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--butter)">Case study · Family business</div>
+      <h1>NaturalRockShop</h1>
+      <p class="lede" style="color:#cfe3d4;max-width:32ch;">My aunt's Etsy shop — and my crash course in running one.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Role</span><span class="v">Assistant · Photographer</span></div>
+        <div class="cell-m"><span class="k">Since</span><span class="v">May 2025</span></div>
+        <div class="cell-m"><span class="k">Rating</span><span class="v">4.9★ · 13 yrs on Etsy</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap cols2">
+    <div><div class="eyebrow" style="color:var(--hunter-ink)">My role</div><h2>Making handcrafted jewelry look as good as it is.</h2></div>
+    <div>
+      <p>NaturalRockShop is my aunt's Etsy shop — handcrafted silver and gold gemstone jewelry with a following built over 13 years on the platform: 17,300+ completed sales, a 4.9-star rating across more than 6,600 reviews, and nearly 1,600 items in the shop. I stepped in to help modernize and maintain the brand's presence: capturing and editing macro product photography that shows off each stone's texture and detail, styling shoots to drive listing engagement, and building out the shop's own website alongside its Instagram.</p>
+      <p>Beyond photography, I handle order fulfillment and shipping and respond directly to customer questions — the operational side that keeps a 17,000+ sale shop running smoothly day to day. I also develop the content strategy behind how each new piece gets introduced and promoted — deciding what goes on Instagram versus the Etsy listings themselves, and how to keep a shop with over a decade of history feeling current without losing what customers already love about it.</p>
+      <p>It's a different kind of challenge than a brand built from scratch: the trust and reputation were already there, and my job was to give it a stronger visual identity and smoother day-to-day operations to match.</p>
+      <div style="margin-top:1rem;"><span class="pill">Product photography</span><span class="pill">Photo editing</span><span class="pill">Order fulfillment</span><span class="pill">Customer service</span><span class="pill">Web &amp; brand</span><span class="pill">Instagram strategy</span></div>
+      <p style="margin-top:1rem;"><a href="https://www.etsy.com/shop/NaturalRockShop" target="_blank" rel="noopener" style="color:var(--hunter-ink);font-weight:600;">Visit the shop on Etsy ↗</a></p>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="statgrid no-ring">
+      <div class="stat"><div class="n">17.3K</div><div class="l">Sales on Etsy</div></div>
+      <div class="stat"><div class="n">4.9★</div><div class="l">6,600+ reviews</div></div>
+      <div class="stat"><div class="n">15.7K</div><div class="l">Shop favorites</div></div>
+      <div class="stat"><div class="n">13</div><div class="l">Years on Etsy</div></div>
+    </div>
+    <p style="font-size:.76rem;color:var(--mocha-soft);margin:.8rem 0 0;">Source: NaturalRockShop's live Etsy storefront.</p>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--hunter-ink)">The photography</div>
+    <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:1.2rem;">Macro shots I've styled and shot.</h2>
+    <div class="jewelrygrid">
+      <figure class="jf"><img src="nrs-ring-1.jpeg" alt="Handcrafted gemstone ring, macro product photography"></figure>
+      <figure class="jf"><img src="nrs-ring-2.jpeg" alt="Handcrafted tourmaline ring, macro product photography"></figure>
+      <figure class="jf"><img src="nrs-ring-3.jpeg" alt="Handcrafted sugilite ring, macro product photography"></figure>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('zora')"><span class="lbl">← Previous</span>Zora REI</a>
+    <a class="next" onclick="go('cannababes')"><span class="lbl">Next →</span>Cannababes</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-cannababes">
+  <header class="hero hero-bluegrey">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--butter)">Case study · Brand representation</div>
+      <h1>Cannababes</h1>
+      <p class="lede" style="color:#e3ecf8;max-width:34ch;">Showing up in person, on brand, at every event.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Role</span><span class="v">Content Creator &amp; Sales Associate</span></div>
+        <div class="cell-m"><span class="k">Since</span><span class="v">Aug 2025</span></div>
+        <div class="cell-m"><span class="k">Location</span><span class="v">Hybrid · Detroit, MI (NY branch)</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap cols2">
+    <div><div class="eyebrow" style="color:var(--blue-ink)">My role</div><h2>The face of the brand, in person.</h2></div>
+    <div>
+      <p>Cannababes is a brand ambassador role in the cannabis wellness space — a trained, trusted presence in person, not a desk job. Onboarding included completing official training programs for brands like <strong>Jeeter</strong> and <strong>Planet Nugg</strong> (a wellness-focused dispensary in Farmingdale, NY), and ongoing work involves regularly submitting content (photos and check-ins) through each brand's internal channels for approval and posting, keeping everything compliant with how the brand needs to be represented.</p>
+      <p>The best part of the role is the in-person events — <strong>Unity Fest</strong>, the Long Island Cannabis Coalition's festival, was a standout, where I represented Planet Nugg directly with attendees alongside their team: engaging with customers, answering questions, and putting a face to the brand rather than just a feed. I've also worked in-store for Jeeter, including their "Mile High" activation. That in-person energy is what the role is really about — sales and customer engagement happen face to face first, with content supporting it rather than replacing it.</p>
+      <div style="margin-top:1rem;"><span class="pill">Brand training &amp; compliance</span><span class="pill">Event representation</span><span class="pill">Customer engagement</span><span class="pill">Content submission</span></div>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--blue-ink)">In the field</div>
+    <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:1.2rem;">On brand, on site.</h2>
+    <div class="eventgrid">
+      <figure class="ef"><img src="cb-unityfest-booth.jpg" alt="Planet Nugg team at the Unity Fest booth"><figcaption>The Planet Nugg booth at Unity Fest</figcaption></figure>
+      <figure class="ef"><img src="cb-unityfest-area51.jpg" alt="Cannababes with the Area 51 alien mascot at Unity Fest"><figcaption>Meeting the Area 51 mascot</figcaption></figure>
+      <figure class="ef"><img src="cb-jeeter-group.jpg" alt="Jeeter x Free Smoke NY brand ambassador event"><figcaption>Jeeter × Free Smoke NY</figcaption></figure>
+      <figure class="ef"><img src="cb-jeeter-milehigh.jpg" alt="Jeeter Mile High in-store activation"><figcaption>Jeeter's "Mile High" in-store activation</figcaption></figure>
+      <figure class="ef"><img src="cb-unityfest-solo.jpg" alt="Katie representing Planet Nugg at Unity Fest"><figcaption>Repping Planet Nugg at Unity Fest</figcaption></figure>
+      <figure class="ef"><img src="cb-rydercup.jpg" alt="Katie at a Planet Nugg Ryder Cup 2025 event"><figcaption>Planet Nugg × Ryder Cup 2025</figcaption></figure>
+      <figure class="ef"><img src="cb-unityfest-alien.jpg" alt="The Planet Nugg alien mascot at Unity Fest"><figcaption>The Planet Nugg mascot at Unity Fest</figcaption></figure>
+      <figure class="ef"><img src="cb-unityfest-bracelets.jpg" alt="Bracelet-making station at Unity Fest"><figcaption>The bracelet-making station at Unity Fest</figcaption></figure>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap cols2" style="align-items:center;">
+    <div class="eventflyer"><img src="cb-unityfest-flyer.jpg" alt="Unity Fest event flyer, Long Island Cannabis Coalition"></div>
+    <div>
+      <div class="eyebrow" style="color:var(--blue-ink)">The event</div>
+      <h2 style="font-size:clamp(1.3rem,2.6vw,1.7rem);">Unity Fest — Long Island Cannabis Coalition.</h2>
+      <p>A full-day festival — music, food, and dozens of cannabis brands — powered by Planet Nugg. I worked the Planet Nugg booth alongside their team, engaging attendees throughout the day in a fully licensed, 21+ event setting.</p>
+      <p style="margin-top:.8rem;"><a href="https://www.einpresswire.com/article/846772194/unity-fest-2025-a-celebration-of-music-food-culture-community" target="_blank" rel="noopener" style="color:var(--blue-ink);font-weight:600;">Read the press coverage ↗</a></p>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--blue-ink)">On video</div>
+    <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:1rem;">A look at the work.</h2>
+    <div class="videowrap">
+      <iframe src="https://www.youtube.com/embed/k8nvxGJC_kA" title="Cannababes brand ambassador video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('nrs')"><span class="lbl">← Previous</span>NaturalRockShop</a>
+    <a class="next" onclick="go('sugared')"><span class="lbl">Next →</span>Sugared Beauty Bar</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-sugared">
+  <header class="hero hero-thistle">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--thistle-ink)">Case study · Interview project</div>
+      <h1>Sugared Beauty Bar</h1>
+      <p class="lede" style="color:var(--thistle-ink);max-width:32ch;">A real hiring challenge, delivered in under 48 hours.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Type</span><span class="v">Interview design challenge</span></div>
+        <div class="cell-m"><span class="k">Deliverables</span><span class="v">12 posts + 2 carousels</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section"><div class="wrap cols2">
+    <div><div class="eyebrow" style="color:var(--thistle-ink)">My role</div><h2>Given a brief. Delivered a full package.</h2></div>
+    <div>
+      <p>As part of the interview process for a content role at Sugared Beauty Bar, I was given a real-world creative challenge: design a full month of social content for a beauty and self-care brand, on a tight turnaround. I delivered 12 posts and 2 full carousels — consistent templates, service-education content, promotional posts, and a soft, on-brand voice — concept, design, and copy all mine, completed in under 48 hours.</p>
+      <p>It's one of the clearest examples I have of working under real evaluation conditions rather than a self-set deadline — the kind of test that shows what I can actually produce when it counts, not just what I choose to make on my own time.</p>
+      <div style="margin-top:1rem;"><span class="pill">Campaign design</span><span class="pill">Carousels</span><span class="pill">Copywriting</span><span class="pill">Brand voice</span><span class="pill">Fast turnaround</span></div>
+    </div>
+  </div></section>
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="statgrid no-ring">
+      <div class="stat"><div class="n">12</div><div class="l">Posts designed</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Carousels</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Slides each</div></div>
+      <div class="stat"><div class="n">48hr</div><div class="l">Turnaround</div></div>
+    </div>
+  </div></section>
+
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--thistle-ink)">Carousel · Service education</div>
+    <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1rem;">"Which Facial Is Right For You?"</h2>
+    <div class="igcarousel">
+      <div class="igc-viewport">
+        <div class="igc-track">
+          <img src="sug-facial-1.jpg" alt="Which facial is right for you, slide 1">
+          <img src="sug-facial-2.jpg" alt="Which facial is right for you, slide 2">
+          <img src="sug-facial-3.jpg" alt="Which facial is right for you, slide 3">
+          <img src="sug-facial-4.jpg" alt="Which facial is right for you, slide 4">
+        </div>
+      </div>
+      <button class="igc-arrow igc-prev" aria-label="Previous slide" onclick="igcMove(this,-1)">‹</button>
+      <button class="igc-arrow igc-next" aria-label="Next slide" onclick="igcMove(this,1)">›</button>
+      <span class="igc-count">1/4</span>
+      <div class="igc-dots">
+        <button class="dot active" onclick="igcGo(this,0)"></button><button class="dot" onclick="igcGo(this,1)"></button><button class="dot" onclick="igcGo(this,2)"></button><button class="dot" onclick="igcGo(this,3)"></button>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--thistle-ink)">Carousel · Service education</div>
+    <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1rem;">The Massage Guide</h2>
+    <div class="igcarousel">
+      <div class="igc-viewport">
+        <div class="igc-track">
+          <img src="sug-massage-1.jpg" alt="Massage guide carousel, slide 1">
+          <img src="sug-massage-2.jpg" alt="Massage guide carousel, slide 2">
+          <img src="sug-massage-3.jpg" alt="Massage guide carousel, slide 3">
+          <img src="sug-massage-4.jpg" alt="Massage guide carousel, slide 4">
+        </div>
+      </div>
+      <button class="igc-arrow igc-prev" aria-label="Previous slide" onclick="igcMove(this,-1)">‹</button>
+      <button class="igc-arrow igc-next" aria-label="Next slide" onclick="igcMove(this,1)">›</button>
+      <span class="igc-count">1/4</span>
+      <div class="igc-dots">
+        <button class="dot active" onclick="igcGo(this,0)"></button><button class="dot" onclick="igcGo(this,1)"></button><button class="dot" onclick="igcGo(this,2)"></button><button class="dot" onclick="igcGo(this,3)"></button>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--thistle-ink)">Single posts · February self-love theme</div>
+    <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1.2rem;">The rest of the grid.</h2>
+    <div class="fillergrid">
+      <figure class="ff"><img src="sug-filler-candyhearts.jpg" alt="Sugar and Love candy hearts post"></figure>
+      <figure class="ff"><img src="sug-filler-calendar.jpg" alt="February self-care content calendar"></figure>
+      <figure class="ff"><img src="sug-filler-mirror.jpg" alt="Self-love quote with mirror image"></figure>
+      <figure class="ff"><img src="sug-filler-bouquet.jpg" alt="Flower bouquet with growth quote"></figure>
+      <figure class="ff"><img src="sug-filler-affirmations.jpg" alt="February self-love affirmations post"></figure>
+      <figure class="ff"><img src="sug-filler-loveyourself.jpg" alt="Love yourself line-art heart logo post"></figure>
+    </div>
+  </div></section>
+
+  <section class="section" style="padding-top:0;"><div class="wrap">
+    <div class="eyebrow" style="color:var(--thistle-ink)">Reels · 4 of 12 posts</div>
+    <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:1.2rem;">Short-form video, shot and edited.</h2>
+    <div class="reelgrid">
+      <div class="videowrap"><iframe src="https://www.youtube.com/embed/TGiwCduB9cU" title="Sugared Beauty Bar reel 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="videowrap"><iframe src="https://www.youtube.com/embed/ik7Q4n1Lh78" title="Sugared Beauty Bar reel 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="videowrap"><iframe src="https://www.youtube.com/embed/uYxpRUiof40" title="Sugared Beauty Bar reel 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="videowrap"><iframe src="https://www.youtube.com/embed/7lLYKdmHG28" title="Sugared Beauty Bar reel 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+    <p style="margin-top:1.2rem;"><a href="https://www.loom.com/share/dd39451e27da46cb9adf628daee11dde" target="_blank" rel="noopener" style="color:var(--thistle-ink);font-weight:600;">Watch a full walkthrough of the 12-post grid ↗</a></p>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('cannababes')"><span class="lbl">← Previous</span>Cannababes</a>
+    <a class="next" onclick="go('purplealert')"><span class="lbl">Next →</span>SHC Purple Alert</a>
+  </div></div></nav>
+</main>
+
+<main class="page" id="page-purplealert">
+  <header class="hero hero-lavender">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--purple-ink)">Case study · Founder · 2022–2025</div>
+      <h1>SHC Purple Alert</h1>
+      <p class="lede" style="color:var(--purple-ink);max-width:28ch;">A campus account for Badgers, by Badgers — that the whole school ended up following.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Role</span><span class="v">Founder &amp; Editor</span></div>
+        <div class="cell-m"><span class="k">Platform</span><span class="v">Instagram</span></div>
+        <div class="cell-m"><span class="k">Beat</span><span class="v">Campus life · memes · community</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHAT IT WAS + WHY -->
+  <section class="section">
+    <div class="wrap cols2">
+      <div>
+        <div class="eyebrow" style="color:var(--purple-ink)">What it was</div>
+        <h2>The account that gave campus a voice.</h2>
+      </div>
+      <div>
+        <p style="font-size:1.1rem;color:var(--mocha);">I started Purple Alert because Spring Hill needed a place that actually felt like <em>us</em> — somewhere students could laugh at the same inside jokes, keep up with what was happening around campus, and feel part of one community.</p>
+        <p>What began as a fun, unofficial meme page grew into something the whole campus paid attention to: news, events, weather, shout-outs, and the occasional purple badger. It was for Badgers, by Badgers — and it caught on with students, alumni, families, and even the wider Mobile community.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Campus life</span><span class="star">✦</span><span>Almost Friday</span><span class="star">✦</span><span>Memes</span><span class="star">✦</span><span>Purp the badger</span><span class="star">✦</span><span>Shout-outs</span><span class="star">✦</span><span>Event promo</span><span class="star">✦</span>
+      <span>Campus life</span><span class="star">✦</span><span>Almost Friday</span><span class="star">✦</span><span>Memes</span><span class="star">✦</span><span>Purp the badger</span><span class="star">✦</span><span>Shout-outs</span><span class="star">✦</span><span>Event promo</span><span class="star">✦</span>
+    </div>
+  </div>
+
+  <!-- PRESS (moved high) -->
+  <div class="diag on-dark">
+    <section class="section">
+      <div class="wrap cols2" style="align-items:center;">
+        <div>
+          <div class="eyebrow" style="color:var(--thistle)">In the press</div>
+          <h2 style="color:var(--linen)">Front page of <em>The SpringHillian</em>.</h2>
+          <p>On April 25, 2024, the college's student newspaper ran a front-page story on Purple Alert — a meme page that had become a genuine campus institution. I sat down with them to share how it started and what it grew into.</p>
+          <p style="margin-top:.8rem;"><a href="Springhillian_April_25_2024.pdf" target="_blank" rel="noopener" style="color:var(--thistle);font-weight:600;">Read the full feature (PDF) ↗</a></p>
+        </div>
+        <a class="clipping" href="Springhillian_April_25_2024.pdf" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;">
+          <div class="kick"><span>The SpringHillian · Vol. 129</span><span>Apr 25 2024</span></div>
+          <h3>Purple Alert Instagram Admin Shares Her Story</h3>
+          <p>A front-page feature by reporter Maddie Bouck on how the account started, grew past 1,000 followers, and became a campus institution. <strong style="color:var(--purple-ink);">Tap to read →</strong></p>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- REAL POST EXAMPLES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--purple-ink)">From the feed</div>
+      <h2 style="font-size:clamp(1.6rem,3.6vw,2.4rem);">Real posts.</h2>
+      <p style="color:var(--mocha-soft);max-width:50ch;margin-top:.5rem;">A sampling of what went out — memes, campus moments, event promo, and Purp. Drop real screenshots into this grid, or see the live feed anytime.</p>
+      <div class="bento" style="margin-top:1.4rem;--cellbg:var(--lavender);">
+        <div class="cell bbig"><span class="ph">▢ Top post</span></div>
+        <div class="cell"><span class="ph">▢ Meme</span></div>
+        <div class="cell"><span class="ph">▢ Almost Friday</span></div>
+        <div class="cell b2h"><span class="ph">▢ Event promo</span></div>
+        <div class="cell"><span class="ph">▢ Shout-out</span></div>
+        <div class="cell"><span class="ph">▢ Campus moment</span></div>
+      </div>
+      <p style="margin-top:1.2rem;"><a href="https://www.instagram.com/purp_alert/" target="_blank" rel="noopener" class="dlbtn">See the live feed ↗</a></p>
+    </div>
+  </section>
+
+  <!-- PURP MASCOT -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--purple-ink)">The mascot</div>
+      <h2 style="font-size:clamp(1.6rem,3.6vw,2.4rem);">Meet Purp.</h2>
+      <p style="color:var(--mocha-soft);max-width:52ch;margin-top:.5rem;">A purple badger in a tracksuit and gold chain who became the account's running bit — showing up for holidays, finals, game days, and the Badger Dash. A whole cast of AI-made Purp images the campus started looking forward to.</p>
+      <div class="bento" style="margin-top:1.4rem;--cellbg:var(--lavender);">
+        <div class="cell bbig"><span class="ph">▢ Purp hero (streetwear trio)</span></div>
+        <div class="cell"><span class="ph">▢ Pirate (Oct)</span></div>
+        <div class="cell"><span class="ph">▢ Holidays (Dec)</span></div>
+        <div class="cell b2h"><span class="ph">▢ Finals (May)</span></div>
+        <div class="cell"><span class="ph">▢ Basketball dunk</span></div>
+        <div class="cell"><span class="ph">▢ Badger Dash tie-in</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGER DASH -->
+  <div style="background:var(--hunter);color:var(--linen);">
+    <section class="section on-dark">
+      <div class="wrap">
+        <div class="eyebrow" style="color:var(--butter)">Spin-off · SGA</div>
+        <h2 style="color:var(--linen)">The Badger Dash</h2>
+        <p style="max-width:48ch;">A 5K color run for St. Jude on the Avenue of the Oaks. I led the social media side and supported the event with graphics, vendor outreach, and promotion.</p>
+        <div class="entries">
+          <div class="entry"><div class="idx">01</div><div><h4>Social media lead</h4></div><p>Cross-promotion through Purple Alert plus close work with the @thebadgerdash account.</p></div>
+          <div class="entry"><div class="idx">02</div><div><h4>Event graphics</h4></div><p>Flyers, story graphics, t-shirt design, and Purp-branded vendor tie-ins (CJ's Southern Swigs, Threaded Oyster).</p></div>
+          <div class="entry"><div class="idx">03</div><div><h4>Vendor &amp; advertising support</h4></div><p>Outreach and promotion supporting the SGA + Tri Delta organizing team.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HANDOFF + reframed numbers -->
+  <section class="section">
+    <div class="wrap cols2" style="align-items:center;">
+      <div>
+        <div class="eyebrow" style="color:var(--purple-ink)">Still going</div>
+        <h2>I handed over the keys. It's still growing.</h2>
+        <p>When I passed Purple Alert to the next class of students, it had reached well over a thousand followers at a school of around 900 — and it hasn't slowed down since. The account is still active today, which to me is the real win: I didn't build a personality, I built something the campus wanted to keep.</p>
+      </div>
+      <div class="livecard">
+        <div class="status"><span class="live"></span> Still active</div>
+        <a class="handle" href="https://www.instagram.com/purp_alert/" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">@purp_alert ↗</a>
+        <p class="sub">Founded 2022 as @shcpurplealert · renamed @purp_alert · 1,000+ followers and growing when I handed it off · still posting today.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="casenav"><div class="wrap"><div class="row">
+    <a onclick="go('sugared')"><span class="lbl">← Previous</span>Sugared Beauty Bar</a>
+    <a class="next" onclick="go('projects')"><span class="lbl">Back to</span>Portfolio</a>
+  </div></div></nav>
+</main>
+
+<!-- ==================== ABOUT ==================== -->
+<main class="page" id="page-about">
+  <header class="hero hero-cherry herodeco" style="background:var(--cherry);">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#a14d61">About</div>
+      <h1>Hi, I'm Katie.</h1>
+      <p class="lede" style="color:#a14d61;max-width:44ch;">Here's a closer look at where I've been, what I care about, and everything I bring to the table beyond the résumé.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="ha ha1" viewBox="0 0 60 60" fill="none" stroke="#a14d61" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 52C14 40 6 31 6 21c0-8 6-14 13-14 6 0 9 4 11 7 2-3 5-7 11-7 7 0 13 6 13 14 0 10-8 19-24 31Z"/></svg>
+      <svg class="ha ha2" viewBox="0 0 60 60" fill="none" stroke="#a14d61" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="30" r="22"/><circle cx="21" cy="24" r="2.5" fill="#a14d61" stroke="none"/><circle cx="39" cy="24" r="2.5" fill="#a14d61" stroke="none"/><path d="M18 36c4 6 20 6 24 0"/></svg>
+      <svg class="ha ha3" viewBox="0 0 60 60" fill="none" stroke="#a14d61" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6 34 22 50 22 37 32 42 48 30 38 18 48 23 32 10 22 26 22Z"/></svg>
+      <svg class="ha ha4" viewBox="0 0 60 60" fill="none" stroke="#a14d61" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c0-3 3-6 8-6s8 3 8 6M6 44c0-6 6-10 14-10s14 4 14 10"/><circle cx="20" cy="12" r="6"/></svg>
+    </div>
+  </header>
+
+  <!-- BIO + PORTRAIT -->
+  <section class="section">
+    <div class="wrap aboutgrid">
+      <div>
+        <div class="eyebrow" style="color:var(--blue-ink)">My story</div>
+        <h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:1rem;">Who I am.</h2>
+        <p style="color:var(--mocha-soft);">I'm from Long Island, New York, and graduated from Garden City High School in 2020. Before that, I spent years behind the counter of my dad's craft store, Ace Handicraft, helping families pick out craft and jewelry supplies — my first real experience teaching product usage and fostering creativity in a community space.</p>
+        <p style="color:var(--mocha-soft);">College took me five years. I started at Loyola University Maryland in fall 2020 — fully online, straight into COVID — then moved to a hybrid format that spring, splitting time between Baltimore classrooms and a screen. After two years there, I transferred to Spring Hill College in Mobile, Alabama, where I'd stay for three years and where everything really clicked.</p>
+        <p style="color:var(--mocha-soft);">At Spring Hill I couldn't pick just one lane, so I built my own: a customized interdisciplinary degree combining <strong>Elementary Education</strong> and <strong>Communications</strong>. In the classroom I was student-teaching every semester but my first year; online I was running <strong>Purple Alert</strong>, the campus account I founded that grew into something the whole school followed. Somewhere between lesson plans and memes, I realized they're the same skill — make people care, then make it make sense.</p>
+        <p style="color:var(--mocha-soft);">Creativity is the strength I bring into everything — I love designing lessons and finding unique ways to engage learners, especially through technology. My mom is a special education home instruction teacher, and I think that's part of why accessibility means so much to me: I see technology as a bridge to independence, and I want to help young learners realize their full potential.</p>
+        <p style="color:var(--mocha-soft);">Right now I'm back in New York doing social media and creative work for real brands, chasing photography and music on the side, and looking for the place where communication and education actually meet.</p>
+      </div>
+      <div>
+        <div class="aboutphoto"><img src="graduation_selfie.jpeg" alt="Katherine Conklin" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='flex';"><span class="ph" style="display:none;">▢ FullSizeRender.jpeg</span></div>
+        <div class="dreamcard">
+          <div class="dc-k">The dream</div>
+          <p>Working near my hometown as a computer lab teacher, art teacher, or a specialist who helps educators and students use AI and emerging tech — especially students with disabilities. Technology as a bridge to accessibility and independence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="photostrip">
+        <figure class="pf"><img src="graduation_selfie.jpeg" alt="Graduation" onerror="this.style.display='none';this.parentNode.classList.add('ph-empty');this.parentNode.querySelector('figcaption').dataset.ph='▢ graduation.jpeg';"><figcaption>Graduation — Spring Hill College, 2025</figcaption></figure>
+        <figure class="pf tall"><img src="sol-award.jpeg" alt="Sol Award" onerror="this.style.display='none';this.parentNode.classList.add('ph-empty');this.parentNode.querySelector('figcaption').dataset.ph='▢ sol-award.jpeg';"><figcaption>Receiving the Sol Award</figcaption></figure>
+        <figure class="pf"><img src="katie-2.jpeg" alt="Katie" onerror="this.style.display='none';this.parentNode.classList.add('ph-empty');this.parentNode.querySelector('figcaption').dataset.ph='▢ add a photo';"><figcaption>On campus in Mobile</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS & STRENGTHS -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--blue-ink)">Skills &amp; strengths</div>
+      <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);margin-bottom:1.2rem;">Everything I bring to the table.</h2>
+      <div class="skillgrid">
+        <div class="skillcol">
+          <b>Content &amp; design</b>
+          <span class="pill">Social media content creation</span><span class="pill">DSLR &amp; mobile photo/video</span><span class="pill">Adobe Creative Suite</span><span class="pill">Canva</span><span class="pill">CapCut</span><span class="pill">AI implementation</span>
+        </div>
+        <div class="skillcol">
+          <b>Communications &amp; writing</b>
+          <span class="pill">Strategic writing</span><span class="pill">PR &amp; media ethics</span><span class="pill">Copywriting</span><span class="pill">Crisis communications</span><span class="pill">Scriptwriting</span>
+        </div>
+        <div class="skillcol">
+          <b>Education &amp; instruction</b>
+          <span class="pill">Lesson design</span><span class="pill">Differentiated instruction</span><span class="pill">Classroom technology</span><span class="pill">IEP &amp; accommodations</span><span class="pill">Google Classroom &amp; SmartBoard</span>
+        </div>
+        <div class="skillcol">
+          <b>Core strengths</b>
+          <span class="pill">Creativity</span><span class="pill">Leadership</span><span class="pill">Critical thinking</span><span class="pill">Community outreach</span><span class="pill">Collaboration</span><span class="pill">Spanish (proficient)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOMPLISHMENTS -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--blue-ink)">A few proud moments</div>
+      <div class="accgrid">
+        <div class="accbox" style="--a:var(--butter)"><div class="acc-n">Sol Award</div><p>"Spirit of Spring Hill" — recognized for leadership, creativity, and dedication to campus life (2025).</p><a class="accbox-link" href="sol_award_2025.pdf" target="_blank">View certificate →</a></div>
+        <div class="accbox" style="--a:var(--lavender)"><div class="acc-n">Front-page press</div><p>Purple Alert featured on the front page of <em>The SpringHillian</em> (April 2024).</p><a class="accbox-link" href="Springhillian_April_25_2024.pdf" target="_blank">Read the feature →</a></div>
+        <div class="accbox" style="--a:var(--icy)"><div class="acc-n">Dean's List</div><p>Spring 2025 — Spring Hill College.</p></div>
+        <div class="accbox" style="--a:var(--cherry)"><div class="acc-n">EAS · NYSTCE</div><p>Passed New York's teacher-certification exam for educating all students (2026).</p></div>
+        <div class="accbox" style="--a:var(--hunter);--at:var(--linen)"><div class="acc-n">Badger Dash</div><p>Helped launch a 5K color run for St. Jude as social media lead.</p></div>
+        <div class="accbox" style="--a:var(--lime)"><div class="acc-n">1,000+ community</div><p>Grew a campus account bigger than the campus — and still growing after handoff.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND THE WORK -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap cols2">
+      <div>
+        <div class="eyebrow" style="color:var(--blue-ink)">Beyond the work</div>
+        <h2 style="font-size:clamp(1.5rem,3.2vw,2.1rem);">When I'm not making content.</h2>
+      </div>
+      <div>
+        <p style="color:var(--mocha-soft);">I'm usually behind a camera, working on music, designing something, or writing. I love a good creative challenge, strong coffee, and any excuse to bring people together. A Personal &amp; Creative section is on the way to show more of it.</p>
+        <div style="margin-top:1rem;">
+          <span class="pill">Photography</span><span class="pill">Music</span><span class="pill">Graphic design</span><span class="pill">Writing</span><span class="pill">Video</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div class="wrap"><span>Katherine Conklin</span><span>About</span></div></footer>
+</main>
+
+<!-- ==================== CONTACT ==================== -->
+<main class="page" id="page-contact">
+  <header class="hero contacthero" style="background:var(--lime);">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--lime-ink)">Contact</div>
+      <h1>Let's talk.</h1>
+      <p class="lede" style="color:var(--lime-ink);max-width:40ch;">Open to communications, education, and everything where they overlap — full-time or freelance. The fastest ways to reach me are all right here.</p>
+    </div>
+    <div class="contact-art" aria-hidden="true">
+      <svg class="ca ca1" viewBox="0 0 60 60" fill="none" stroke="var(--lime-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10c0-2 2-4 4-4h6c1 0 2 1 2 2l1 6c0 1 0 2-1 3l-3 3c2 5 6 9 11 11l3-3c1-1 2-1 3-1l6 1c1 0 2 1 2 2v6c0 2-2 4-4 4C22 40 14 32 14 10Z"/></svg>
+      <svg class="ca ca2" viewBox="0 0 60 60" fill="var(--lime-ink)"><path d="M30 52C14 40 6 31 6 21c0-8 6-14 13-14 6 0 9 4 11 7 2-3 5-7 11-7 7 0 13 6 13 14 0 10-8 19-24 31Z"/></svg>
+      <svg class="ca ca3" viewBox="0 0 60 60" fill="none" stroke="var(--lime-ink)" stroke-width="3"><circle cx="30" cy="30" r="22"/><circle cx="21" cy="24" r="2.5" fill="var(--lime-ink)" stroke="none"/><circle cx="39" cy="24" r="2.5" fill="var(--lime-ink)" stroke="none"/><path d="M18 36c4 6 20 6 24 0" stroke-linecap="round"/></svg>
+      <svg class="ca ca4" viewBox="0 0 60 60" fill="var(--lime-ink)"><path d="M30 52C14 40 6 31 6 21c0-8 6-14 13-14 6 0 9 4 11 7 2-3 5-7 11-7 7 0 13 6 13 14 0 10-8 19-24 31Z"/></svg>
+      <svg class="ca ca5" viewBox="0 0 60 60" fill="none" stroke="var(--lime-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6 C33 22 38 27 52 30 C38 33 33 38 30 52 C27 38 22 33 8 30 C22 27 27 22 30 6 Z"/></svg>
+    </div>
+  </header>
+  <section class="section">
+    <div class="wrap">
+      <div class="contactlist">
+        <a class="crow" href="mailto:katieconklin.work@gmail.com">
+          <span class="crow-ic" style="--c:var(--cherry)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+          <span class="crow-t"><span class="crow-h">Email</span><span class="crow-d">katieconklin.work@gmail.com</span></span>
+          <span class="crow-arw">→</span>
+        </a>
+        <a class="crow" href="https://www.linkedin.com/in/katherine-conklin-601675307" target="_blank" rel="noopener">
+          <span class="crow-ic" style="--c:var(--icy)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V9.99H6V17h2.34zM7.17 8.9a1.36 1.36 0 1 0 0-2.71 1.36 1.36 0 0 0 0 2.71zM18 17v-3.84c0-2.05-1.1-3-2.56-3-1.18 0-1.71.65-2 1.11V9.99H11.1V17h2.34v-3.9c0-.2 0-.41.07-.56.16-.41.53-.84 1.16-.84.82 0 1.15.63 1.15 1.55V17H18z"/></svg></span>
+          <span class="crow-t"><span class="crow-h">LinkedIn</span><span class="crow-d">Katherine Conklin</span></span>
+          <span class="crow-arw">↗</span>
+        </a>
+        <a class="crow" href="https://instagram.com/katie.conklin" target="_blank" rel="noopener">
+          <span class="crow-ic" style="--c:var(--lavender)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+          <span class="crow-t"><span class="crow-h">Instagram</span><span class="crow-d">@katie.conklin</span></span>
+          <span class="crow-arw">↗</span>
+        </a>
+        <a class="crow" href="https://dot.cards/katherineconklin" target="_blank" rel="noopener">
+          <span class="crow-ic" style="--c:var(--butter)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></span>
+          <span class="crow-t"><span class="crow-h">dot.cards</span><span class="crow-d">All my links in one place</span></span>
+          <span class="crow-arw">↗</span>
+        </a>
+      </div>
+      <div class="sticky" style="margin-top:2.5rem;">
+        <p class="q">"Teaching the world to pay attention — starting with whoever's reading this."</p>
+        <div class="sig">— Katie</div>
+      </div>
+    </div>
+  </section>
+  <footer class="foot"><div class="wrap"><span>Katherine Conklin</span><span>Contact</span></div></footer>
+</main>
+
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  const el=document.getElementById('page-'+id);
+  if(el){el.classList.add('on');window.scrollTo({top:0,behavior:'auto'});}
+  // case study pages highlight the Projects tab
+  const tabPage=['zora','nrs','cannababes','sugared','purplealert','lesson-phono','lesson-charlotte','lesson-outsiders','lesson-litcircles','lesson-iep','write-shores','write-monkey'].includes(id)?'projects':id;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===tabPage));
+}
+// animated type flip
+(function(){
+  const flip=document.getElementById('flip');
+  if(!flip||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const count=flip.children.length;let i=0;
+  const h=()=>flip.children[0].getBoundingClientRect().height;
+  setInterval(()=>{
+    i=(i+1)%count;
+    flip.style.transform=`translateY(${-i*h()}px)`;
+  },2200);
+})();
+// full-width one-line name
+function fitName(){
+  const el=document.getElementById('fitname');
+  if(!el||!el.offsetParent)return;
+  el.style.fontSize='100px';
+  const avail=el.parentElement.clientWidth-8;
+  el.style.fontSize=Math.max(30,(100*avail/el.scrollWidth))+'px';
+}
+window.addEventListener('resize',fitName);
+const _go=go;
+go=function(id){_go(id);if(id==='home')requestAnimationFrame(fitName);if(id==='zora')loadIG();};
+// Instagram embeds: load embed.js the first time the Zora page is shown (correct width when visible)
+function loadIG(){
+  if(window._igLoaded){ if(window.instgrm&&window.instgrm.Embeds)window.instgrm.Embeds.process(); return; }
+  window._igLoaded=true;
+  var s=document.createElement('script');s.async=true;s.src='https://www.instagram.com/embed.js';
+  document.body.appendChild(s);
+}
+fitName();
+// accordion toggle (projects education lessons)
+function toggleAcc(el){el.classList.toggle('open');}
+// Instagram-style click-through carousel (Sugared)
+function igcState(root){
+  const track=root.querySelector('.igc-track');
+  const n=track.children.length;
+  let i=parseInt(root.dataset.i||'0',10);
+  return {root,track,n,i};
+}
+function igcRender(s){
+  s.track.style.transform=`translateX(-${s.i*100}%)`;
+  s.root.dataset.i=s.i;
+  s.root.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active',idx===s.i));
+  const c=s.root.querySelector('.igc-count'); if(c)c.textContent=(s.i+1)+'/'+s.n;
+}
+function igcMove(btn,dir){
+  const root=btn.closest('.igcarousel');
+  const s=igcState(root);
+  s.i=(s.i+dir+s.n)%s.n;
+  igcRender(s);
+}
+function igcGo(btn,idx){
+  const root=btn.closest('.igcarousel');
+  const s=igcState(root);
+  s.i=idx;
+  igcRender(s);
+}
+// tap image to advance, plus basic swipe
+document.querySelectorAll('.igcarousel').forEach(root=>{
+  const vp=root.querySelector('.igc-viewport');
+  let startX=null;
+  vp.addEventListener('click',e=>{ if(e.target.tagName==='IMG'){ igcMove(root.querySelector('.igc-next'),1); } });
+  vp.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  vp.addEventListener('touchend',e=>{
+    if(startX===null)return;
+    const dx=e.changedTouches[0].clientX-startX;
+    if(Math.abs(dx)>40){ igcMove(root.querySelector(dx<0?'.igc-next':'.igc-prev'),dx<0?1:-1); }
+    startX=null;
+  },{passive:true});
+});
+// projects category drill-in (Option A)
+function openCat(cat){
+  document.getElementById('proj-landing').style.display='none';
+  document.querySelectorAll('.catview').forEach(v=>v.style.display='none');
+  const el=document.getElementById('cat-'+cat);
+  if(el)el.style.display='block';
+  window.scrollTo({top:0,behavior:'auto'});
+}
+function closeCat(){
+  document.querySelectorAll('.catview').forEach(v=>v.style.display='none');
+  document.getElementById('proj-landing').style.display='block';
+  window.scrollTo({top:0,behavior:'auto'});
+}
+// reset projects to landing whenever the page is opened fresh
+const _go2=go;
+go=function(id){_go2(id);if(id==='projects'){closeCat();}};
+</script>
+</body>
+</html>
