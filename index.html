@@ -1150,6 +1150,31 @@ a.cell:hover{transform:translateY(-3px);}
 .reelwin{position:relative;}
 .reelwin iframe,.reelwin video{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .purpgrid .pc img{position:absolute;inset:0;}
+.readmore{margin:0;}
+.readmore>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.15rem;border:1.5px solid var(--mocha);border-radius:999px;font-weight:700;font-size:.9rem;background:#fff;margin:.2rem 0 1rem;color:var(--mocha);}
+.readmore>summary::-webkit-details-marker{display:none;}
+.readmore>summary::after{content:"↓";}
+.readmore[open]>summary::after{content:"↑";}
+.readmore .rm-close{display:none;}.readmore[open] .rm-open{display:none;}.readmore[open] .rm-close{display:inline;}
+.swipehint{font-size:.88rem;font-weight:600;color:var(--mocha-soft);margin:.6rem 0 0;}
+.accs{margin-top:.6rem;}
+.accs .rc-track{gap:14px;padding:6px 2px 14px;}
+.accs .accbox{flex:0 0 clamp(250px,72vw,310px);scroll-snap-align:start;box-sizing:border-box;}
+.accs::after{content:"";position:absolute;right:0;top:0;bottom:14px;width:34px;background:linear-gradient(to right,rgba(245,241,230,0),var(--linen,#F5F1E6));pointer-events:none;}
+@media (hover:none){.accs .rc-btn{display:none;}}
+.photowall{column-count:4;column-gap:clamp(12px,1.8vw,18px);}
+.photowall figure{break-inside:avoid;margin:0 0 clamp(12px,1.8vw,18px);background:#fff;border:1.5px solid var(--mocha);border-radius:18px;overflow:hidden;box-shadow:var(--sh-sm);}
+.photowall img{display:block;width:100%;height:auto;}
+.photowall figure.cert img{background:#fff;padding:10px;box-sizing:border-box;}
+.photowall figcaption{font-size:.76rem;color:var(--mocha-soft);padding:.7rem .9rem;line-height:1.35;}
+@media(max-width:900px){.photowall{column-count:2;}}
+.artwall{column-count:3;column-gap:clamp(12px,1.8vw,18px);}
+.artwall figure{break-inside:avoid;margin:0 0 clamp(12px,1.8vw,18px);background:#fff;border:1.5px solid var(--mocha);border-radius:18px;overflow:hidden;box-shadow:var(--sh-sm);cursor:zoom-in;}
+.artwall img{display:block;width:100%;height:auto;}
+.artwall figcaption{font-size:.76rem;color:var(--mocha-soft);padding:.7rem .9rem;line-height:1.35;}
+@media(max-width:900px){.artwall{column-count:2;}}
+.brandsoon{cursor:default;border:2px dashed rgba(51,41,39,.35);background:transparent;box-shadow:none;align-items:center;justify-content:center;text-align:center;padding:2rem 1.4rem;gap:.45rem;min-height:240px;}
+.brandsoon:hover{transform:none;box-shadow:none;}
 .emptystate{border:1.5px dashed rgba(51,41,39,.35);border-radius:20px;padding:2rem 1.8rem;max-width:36rem;background:rgba(255,255,255,.5);}
 .emptystate .es-t{font-family:var(--display);font-size:1.5rem;font-weight:600;margin:0 0 .4rem;}
 .emptystate p{margin:0;color:var(--mocha-soft);}
@@ -1387,15 +1412,35 @@ a.cell:hover{transform:translateY(-3px);}
     <div class="wrap">
       <button class="catback" onclick="closeCat()">← All categories</button>
       <div class="cathead"><span class="catside" style="background:var(--thistle)"></span><div><div class="eyebrow" style="color:var(--butter-ink);margin:0 0 .3rem;">Personal</div><h2>Everything I make</h2></div></div>
-      <div class="emptystate">
-        <p class="es-t">Nothing here yet.</p>
-        <p>Writing, art, photography, and music will live here as I add them.</p>
-      </div>
+      <div class="brandgrid"><button class="brandtile" onclick="go('creative')" style="--bg:#fff"><span class="bt-logo fill"><img src="creative-cover.jpg" alt="A strip of three digital artworks: dark glitch cover art, a psychedelic collage, and a postcard collage"></span><span class="bt-cap"><span class="bt-h">Creative digital media</span><span class="bt-d">Edited photos, digital collages, and album cover art made in Procreate and Superimpose.</span><span class="bt-go">See the work →</span></span></button><div class="brandtile brandsoon"><span class="bt-h">More coming soon</span><span class="bt-d">Writing, photography, and music will live here as I add them.</span></div></div>
     </div>
   </section>
 
   <footer class="foot"><div class="wrap"><span>Katherine Conklin</span><span>Work</span></div></footer>
 </main>
+<main class="page" id="page-creative">
+  <header class="hero hero-lavender">
+    <div class="wrap">
+      <button class="pgback" onclick="go('projects');openCat('pers')">← Personal</button>
+      <h1>Creative digital media</h1>
+      <p class="lede" style="max-width:34ch;">Edited photos, digital collages, and album cover art.</p>
+      <div class="meta">
+        <div class="cell-m"><span class="k">Tools</span><span class="v">Procreate · Superimpose</span></div>
+        <div class="cell-m"><span class="k">Medium</span><span class="v">Digital collage · Photo editing</span></div>
+        <div class="cell-m"><span class="k">Includes</span><span class="v">Album cover art</span></div>
+      </div>
+    </div>
+  </header>
+  <section class="section" style="padding-top:clamp(36px,5vw,60px);"><div class="wrap">
+    <div class="eyebrow" style="color:var(--blue-ink)">The work</div>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:.8rem;">Made over the years.</h2>
+    <p style="color:var(--mocha-soft);max-width:62ch;">Photos I've taken and edited, plus collages and illustrations I made in Procreate and Superimpose. Two of these pieces are cover art I made for SoundCloud releases. Tap any piece to see it larger.</p>
+    <p style="margin:1rem 0 1.8rem;"><a class="btn" href="https://www.instagram.com/katieconklindigital/" target="_blank" rel="noopener">@katieconklindigital on Instagram ↗</a></p>
+    <div class="artwall"><figure data-img="creative-1.jpg" data-cap="Creative digital media"><img src="creative-1.jpg" alt="Digital collage with a psychedelic fractal background, a black-and-white New York skyline, the letters GBC in blackletter, a mushroom, a fairy-winged cat, and pop-culture cutouts" loading="lazy"></figure><figure data-img="creative-2.jpg" data-cap="Cover art for a friend's album on SoundCloud."><img src="creative-2.jpg" alt="Dark purple and red glitch-textured cover art with hand-lettered text reading Time 2" loading="lazy"><figcaption>Cover art for a friend's album on SoundCloud.</figcaption></figure><figure data-img="creative-3.jpg" data-cap="Creative digital media"><img src="creative-3.jpg" alt="Digital collage of a black silhouette under live oak trees, surrounded by stickers of Long Island, a Loyola crest, the Empire State Building, a golden retriever, hearts, butterflies, and Hello Kitty" loading="lazy"></figure><figure data-img="creative-4.jpg" data-cap="Creative digital media"><img src="creative-4.jpg" alt="Edited photograph of a hand reaching toward a glitchy, colorful grid of tiles" loading="lazy"></figure><figure data-img="creative-5.jpg" data-cap="Cover art for a SoundCloud release."><img src="creative-5.jpg" alt="Cover art with three color-shifted copies of a person in a beanie over a psychedelic background, with a Kuromi character playing guitar" loading="lazy"><figcaption>Cover art for a SoundCloud release.</figcaption></figure><figure data-img="creative-6.jpg" data-cap="Creative digital media"><img src="creative-6.jpg" alt="Dark digital collage of a postcard with a goldfish, a French postage stamp, a purple flower, and plant leaves over a swirling rainbow background" loading="lazy"></figure></div>
+  </div></section>
+  <nav class="casenav"><div class="wrap"><div class="row"> <a onclick="go('projects');openCat('pers')"><span class="lbl">← Back to</span>Personal</a> <span></span> </div></div></nav>
+</main>
+
 
 <!-- ==================== EDUCATION LESSON PAGES ==================== -->
 <!-- ==================== CASE STUDIES (unchanged structure, retargeted nav) ==================== -->
@@ -1895,13 +1940,13 @@ a.cell:hover{transform:translateY(-3px);}
         <div class="eyebrow" style="color:var(--blue-ink)">My story</div>
         <h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:1rem;">Who I am.</h2>
         <p style="color:var(--mocha-soft);">I'm from Long Island, New York, and graduated from Garden City High School in 2020. Before that, I spent years behind the counter of my dad's craft store, Ace Handicraft, helping families pick out craft and jewelry supplies — my first real experience teaching product usage and fostering creativity in a community space.</p>
-        <p style="color:var(--mocha-soft);">College took me five years. I started at Loyola University Maryland in fall 2020 — fully online, straight into COVID — then moved to a hybrid format that spring, splitting time between Baltimore classrooms and a screen. After two years there, I transferred to Spring Hill College in Mobile, Alabama, where I'd stay for three years and where everything really clicked.</p>
+        <details class="readmore"><summary><span class="rm-open">Read more</span><span class="rm-close">Show less</span></summary><p style="color:var(--mocha-soft);">College took me five years. I started at Loyola University Maryland in fall 2020 — fully online, straight into COVID — then moved to a hybrid format that spring, splitting time between Baltimore classrooms and a screen. After two years there, I transferred to Spring Hill College in Mobile, Alabama, where I'd stay for three years and where everything really clicked.</p>
         <p style="color:var(--mocha-soft);">At Spring Hill I couldn't pick just one lane, so I built my own: a customized interdisciplinary degree combining <strong>Elementary Education</strong> and <strong>Communications</strong>. In the classroom I was student-teaching; online I was running <strong>Purple Alert</strong>, the campus account I founded that grew into something the whole school followed. Somewhere between lesson plans and memes, I realized they're the same skill: earning someone's attention, then giving them something worth understanding.</p>
         <p style="color:var(--mocha-soft);">Creativity is the strength I bring into everything — I love designing lessons and finding unique ways to engage learners, especially through technology. My mom is a special education home instruction teacher, and I think that's part of why accessibility means so much to me: I see technology as a bridge to independence, and I want to help young learners realize their full potential.</p>
-        <p style="color:var(--mocha-soft);">Right now I'm back in New York doing social media and creative work for real brands, chasing photography and music on the side, and looking for the place where communication and education actually meet.</p>
+        <p style="color:var(--mocha-soft);">Right now I'm back in New York doing social media and creative work for real brands, chasing photography and music on the side, and looking for the place where communication and education actually meet.</p></details>
       </div>
       <div>
-        <div class="aboutphoto" data-dotframe data-dotgap="9"><img src="graduation_selfie.jpeg" alt="Katherine Conklin" onerror="this.style.display='none';this.parentNode.querySelector('.ph').style.display='flex';"><span class="ph" style="display:none;">▢ FullSizeRender.jpeg</span></div>
+        <div class="aboutphoto" data-dotframe data-dotgap="9" style="aspect-ratio:3/2;min-height:0;"><img src="about-friends.jpg" alt="Katherine Conklin and three friends in caps and gowns at graduation" style="object-position:62% 40%;"></div><p style="font-size:.8rem;color:var(--mocha-soft);margin:.6rem 0 0;">At graduation, with friends.</p>
         
     </div>
   </section>
@@ -1921,31 +1966,12 @@ a.cell:hover{transform:translateY(-3px);}
   <!-- PHOTO STRIP -->
   <section class="section" style="padding-top:0;">
     <div class="wrap">
-      <div class="photostrip">
-        <figure class="pf"><img src="graduation_selfie.jpeg" alt="Graduation" onerror="this.style.display='none';this.parentNode.classList.add('ph-empty');this.parentNode.querySelector('figcaption').dataset.ph='▢ graduation.jpeg';"><figcaption>Graduation — Spring Hill College, 2025</figcaption></figure>
-        <figure class="pf cert"><img src="sol-award.jpeg" alt="The Spirit of Spring Hill award certificate for Katherine Conklin" onerror="this.style.display='none';this.parentNode.classList.add('ph-empty');this.parentNode.querySelector('figcaption').dataset.ph='▢ sol-award.jpeg';"><figcaption>The Sol Award: Spirit of Spring Hill</figcaption></figure>
-        <figure class="pf tall"><img src="katie-2.jpeg" alt="The Avenue of the Oaks at Spring Hill College" onerror="this.style.display='none';this.parentNode.classList.add('ph-empty');this.parentNode.querySelector('figcaption').dataset.ph='▢ katie-2.jpeg';"><figcaption>The Avenue of the Oaks, Spring Hill College</figcaption></figure>
-      </div>
+      <div class="photowall"><figure class="cert"><img src="sol-award.jpeg" alt="The Spirit of Spring Hill award certificate for Katherine Conklin" loading="lazy"><figcaption>The Sol Award: Spirit of Spring Hill</figcaption></figure><figure><img src="about-family.jpg" alt="Katherine with her family at an evening outdoor event under string lights" loading="lazy"><figcaption>With my family</figcaption></figure><figure><img src="katie-2.jpeg" alt="The Avenue of the Oaks at Spring Hill College" loading="lazy"><figcaption>The Avenue of the Oaks, Spring Hill College</figcaption></figure><figure><img src="about-badger-spirit.jpg" alt="Katherine holding her Most Badger Spirit paper plate award from the Class of 2025 senior superlatives" loading="lazy"><figcaption>Most Badger Spirit, Senior Superlatives, March 2025</figcaption></figure></div>
     </div>
   </section>
 
 
   <!-- ACCOMPLISHMENTS -->
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="eyebrow" style="color:var(--blue-ink)">A few proud moments</div>
-      <div class="accgrid">
-        <div class="accbox" style="--a:var(--butter)"><div class="acc-n">Sol Award</div><p>"Spirit of Spring Hill" — recognized for leadership, creativity, and dedication to campus life (2025).</p><a class="accbox-link" href="sol_award_2025.pdf" target="_blank" rel="noopener">View certificate →</a></div>
-        <div class="accbox" style="--a:var(--lavender)"><div class="acc-n">Front-page press</div><p>Purple Alert featured on the front page of <em>The SpringHillian</em> (April 2024).</p><a class="accbox-link" href="Springhillian_April_25_2024.pdf" target="_blank" rel="noopener">Read the feature →</a></div>
-        <div class="accbox" style="--a:var(--icy)"><div class="acc-n">Dean's List</div><p>Spring 2025 — Spring Hill College.</p></div>
-        <div class="accbox" style="--a:var(--cherry)"><div class="acc-n">EAS · NYSTCE</div><p>Passed the Educating All Students (EAS) exam, one of New York's NYSTCE teacher-certification tests. It checks that teachers can work with every kind of learner, including students with disabilities and English language learners (2026).</p></div>
-        <div class="accbox" style="--a:var(--hunter);--at:var(--linen)"><div class="acc-n">Badger Dash</div><p>Helped launch a 5K color run for St. Jude as social media lead.</p></div>
-        <div class="accbox" style="--a:var(--thistle)"><div class="acc-n">1,000+ community</div><p>Grew a campus account bigger than the campus — and still growing after handoff.</p></div>
-      </div>
-    </div>
-  </section>
-
-
   <!-- THE PATH SO FAR (moved from Home) -->
   <section class="section" id="about-path" style="padding-top:0;">
     <div class="wrap">
@@ -1961,7 +1987,8 @@ a.cell:hover{transform:translateY(-3px);}
         <li class="hp-item d-che"><div class="hp-when">Aug 2025–Present</div><h3>Content Creator & Sales — Flwr Grls (formerly Cannababes)</h3><p>Branded content and customer engagement (hybrid).</p></li>
         <li class="hp-item d-hun"><div class="hp-when">May 2025–Present</div><h3>NaturalRockShop — Huntington, NY</h3><p>Product photography, brand website & Instagram strategy.</p></li>
         <li class="hp-item milestone"><div class="hp-when">May 2025</div><h3>Graduated Spring Hill College</h3><p>B.S. Interdisciplinary Studies — Elementary Education & Communications.</p></li>
-        <li class="hp-item milestone"><div class="hp-when">April 2025</div><h3>Sol Award — "Spirit of Spring Hill"</h3><p>Recognized for outstanding leadership, creativity, and dedication to campus life. Dean's List, Spring 2025.</p></li>
+        <li class="hp-item milestone"><div class="hp-when">April 2025</div><h3>Sol Award — "Spirit of Spring Hill"</h3><p>Recognized for outstanding leadership, creativity, and dedication to campus life. Dean's List, Spring 2025. <a href="sol_award_2025.pdf" target="_blank" rel="noopener" style="font-weight:700;color:var(--mocha);">View certificate →</a></p></li>
+        <li class="hp-item milestone"><div class="hp-when">March 19, 2025</div><h3>"Most Badger Spirit" — Senior Superlatives</h3><p>Won the Most Badger Spirit paper plate award in the Class of 2025 senior superlatives.</p></li>
         <li class="hp-item d-hun"><div class="hp-when">May–Aug 2024</div><h3>Regents Exam Proctor — First Class Tutoring</h3><p>Standardized testing & academic integrity.</p></li>
         <li class="hp-item d-che"><div class="hp-when">Jan–Apr 2023</div><h3>Sidewayz Sports Bar — Mobile, AL</h3><p>Bartender.</p></li>
         <li class="hp-item d-lav"><div class="hp-when">2022–2025</div><h3>Founded @shcpurplealert</h3><p>Campus media brand: 1,475 followers · 878,939 impressions · front-page SpringHillian coverage.</p></li>
@@ -2156,7 +2183,7 @@ function go(id){
   const el=document.getElementById('page-'+id);
   if(el){el.classList.add('on');window.scrollTo({top:0,behavior:'auto'});}
   // case study pages highlight the Projects tab
-  const tabPage=['zora','nrs','cannababes','sugared','atc','hank','purplealert'].includes(id)?'projects':id;
+  const tabPage=['zora','nrs','cannababes','sugared','atc','hank','purplealert','creative'].includes(id)?'projects':id;
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.page===tabPage));
   const rb=document.querySelector('.navresume'); if(rb)rb.classList.toggle('active',id==='resume');
 }
@@ -2270,7 +2297,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-open
 d.querySelector('.pad-close').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});d.addEventListener('close',function(){document.body.style.overflow='';d.querySelector('.pad-body').innerHTML='';});})();
 document.addEventListener('click',function(e){var b=e.target.closest('.igmorebtn');if(!b)return;var w=b.previousElementSibling;if(!w)return;var step=+w.dataset.step||12,hid=[].slice.call(w.querySelectorAll('.igfig[hidden]'));hid.slice(0,step).forEach(function(f){f.removeAttribute('hidden');});var left=w.querySelectorAll('.igfig[hidden]').length;if(left>0)b.textContent='Show '+Math.min(step,left)+' more ('+left+' left)';else b.remove();if(window.igWatch)igWatch();});
 function atcPH(img){var d=document.createElement('div');d.className='phbox';d.innerHTML='<b>The flyer goes here.</b><span>Placeholder until the picture is added.</span>';img.replaceWith(d);}
-(function(){var d=document.getElementById('pa-dialog');if(!d)return;document.addEventListener('click',function(e){var a=e.target.closest('[data-img]');if(!a)return;e.preventDefault();var cap=a.dataset.cap||'';d.className='padialog med';d.querySelector('#pad-title').textContent=cap;var body=d.querySelector('.pad-body');body.innerHTML='';var f=document.createElement('figure');f.className='bigfig';var im=document.createElement('img');im.src=a.dataset.img;im.alt=a.dataset.alt||cap;f.appendChild(im);body.appendChild(f);d.showModal();document.body.style.overflow='hidden';d.scrollTop=0;});})();
+(function(){var d=document.getElementById('pa-dialog');if(!d)return;document.addEventListener('click',function(e){var a=e.target.closest('[data-img]');if(!a)return;e.preventDefault();var cap=a.dataset.cap||'';d.className='padialog med';d.querySelector('#pad-title').textContent=cap;var body=d.querySelector('.pad-body');body.innerHTML='';var f=document.createElement('figure');f.className='bigfig';var im=document.createElement('img');var inner=a.querySelector('img');im.src=(inner&&inner.currentSrc)||a.dataset.img;im.alt=a.dataset.alt||cap;f.appendChild(im);body.appendChild(f);d.showModal();document.body.style.overflow='hidden';d.scrollTop=0;});})();
 (function(){function load(){document.querySelectorAll('#page-zora .igtile[data-cat="tt"]').forEach(function(a){if(a.querySelector('img.igt-img')||!/tiktok\.com\/t\//.test(a.href))return;fetch('https://www.tiktok.com/oembed?url='+encodeURIComponent(a.href)).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(j){if(!j||!j.thumbnail_url)return;var im=new Image();im.className='igt-img';im.alt='';im.referrerPolicy='no-referrer';im.onload=function(){a.insertBefore(im,a.firstChild);var c=a.querySelector('.igt-card');if(c)c.style.display='none';};im.src=j.thumbnail_url;}).catch(function(){});});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load);else load();})();
 (function(){document.addEventListener('click',function(e){var b=e.target.closest('.rc-btn');if(!b)return;var t=b.parentElement.querySelector('.rc-track');t.scrollBy({left:(b.classList.contains('next')?1:-1)*Math.max(240,t.clientWidth*0.8),behavior:'smooth'});});})();
 function goAboutClasses(){go('about');var d=document.getElementById('cls-details');if(d)d.open=true;setTimeout(function(){var el=document.getElementById('about-classes');if(el)el.scrollIntoView({behavior:'smooth'});},60);}
