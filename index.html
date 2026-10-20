@@ -1139,6 +1139,17 @@ a.cell:hover{transform:translateY(-3px);}
 .pickcard b{font-family:var(--display);font-size:1.15rem;padding:.2rem 1.1rem 0;}
 .pickcard span.pk-d{font-size:.88rem;color:var(--mocha-soft);line-height:1.45;padding:0 1.1rem;}
 .pickcard em{font-style:normal;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:.2rem 1.1rem 1.1rem;}
+.bt-logo{position:relative;}
+.bt-logo>img{position:absolute;top:1.6rem;bottom:1.6rem;left:12%;right:12%;width:76%;height:calc(100% - 3.2rem);max-width:none;max-height:none;object-fit:contain;}
+.bt-logo.fill>img{top:0;bottom:0;left:0;right:0;width:100%;height:100%;}
+.bt-logo.bt-combo>img{top:1.2rem;bottom:1.2rem;height:calc(100% - 2.4rem);width:42%;}
+.bt-logo.bt-combo>img:first-child{left:5%;right:auto;}
+.bt-logo.bt-combo>img:nth-child(2){right:5%;left:auto;}
+.rc-track figure{position:relative;}
+.rc-track img{position:absolute;inset:0;}
+.reelwin{position:relative;}
+.reelwin iframe,.reelwin video{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.purpgrid .pc img{position:absolute;inset:0;}
 .emptystate{border:1.5px dashed rgba(51,41,39,.35);border-radius:20px;padding:2rem 1.8rem;max-width:36rem;background:rgba(255,255,255,.5);}
 .emptystate .es-t{font-family:var(--display);font-size:1.5rem;font-weight:600;margin:0 0 .4rem;}
 .emptystate p{margin:0;color:var(--mocha-soft);}
@@ -1365,7 +1376,7 @@ a.cell:hover{transform:translateY(-3px);}
           <span class="bt-logo"><img src="cannababecoverart.png" alt="Cannababe logo"></span>
           <span class="bt-cap"><span class="bt-h">Flwr Grls</span><span class="bt-d">Formerly Cannababes. Trained brand representative — Unity Fest and in-person events.</span><span class="bt-go">See the work →</span></span>
         </button>
-        <button class="brandtile" data-open="oneoff" style="--bg:#fff"><span class="bt-logo" style="gap:1.2rem;padding:1.2rem;"><img src="sugaredcoverart.png" alt="Sugared Beauty Bar logo" style="max-width:42%;"><img src="atc-logo.jpg" alt="ATC Rug Washing logo" style="max-width:42%;"></span><span class="bt-cap"><span class="bt-h">One-time projects</span><span class="bt-d">Sugared Beauty Bar and ATC Rug Washing: two projects made once, each for a specific brief.</span><span class="bt-go">Choose a project →</span></span></button>
+        <button class="brandtile" data-open="oneoff" style="--bg:#fff"><span class="bt-logo bt-combo"><img src="sugaredcoverart.png" alt="Sugared Beauty Bar logo"><img src="atc-logo.jpg" alt="ATC Rug Washing logo"></span><span class="bt-cap"><span class="bt-h">One-time projects</span><span class="bt-d">Sugared Beauty Bar and ATC Rug Washing: two projects made once, each for a specific brief.</span><span class="bt-go">Choose a project →</span></span></button>
       </div>
     </div>
   </section>
