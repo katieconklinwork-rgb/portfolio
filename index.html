@@ -2206,17 +2206,38 @@ window.addEventListener('resize',fitName);
 const _go=go;
 go=function(id){_go(id);if(id==='home')requestAnimationFrame(fitName);if(id==='zora')loadIG();if(id==='purplealert')igWatch();if(window.dotAll)requestAnimationFrame(dotAll);};
 // Instagram embeds: load embed.js the first time the Zora page is shown (correct width when visible)
-function igMount(el){if(el.dataset.done)return;el.dataset.done='1';var u=el.dataset.ig;el.innerHTML='<blockquote class="instagram-media" data-instgrm-permalink="'+u+'" data-instgrm-version="14"><a href="'+u+'" target="_blank" rel="noopener">View this on Instagram \u2192</a></blockquote>';loadIG();}
-function igProcess(n){if(window.instgrm&&window.instgrm.Embeds){window.instgrm.Embeds.process();return;}if(n>40)return;setTimeout(function(){igProcess(n+1);},250);}
-// Posts load only when tapped, so the page stays fast (53 live embeds at once was too heavy)
-function igWatch(){document.querySelectorAll('.igslot').forEach(function(el){if(el.dataset.done||el.dataset.btn)return;el.dataset.btn='1';var b=document.createElement('button');b.type='button';b.className='btn igloadbtn';b.textContent='Load post here';b.onclick=function(){igMount(el);};el.appendChild(b);});}
-function loadIG(){
-  if(window._igLoaded){igProcess(0);return;}
+// Instagram posts: wait until Instagram's script is ready, then show each post as it scrolls near the screen (no tapping)
+function igEnsure(cb){
+  if(window.instgrm&&window.instgrm.Embeds){cb();return;}
+  (window._igQ=window._igQ||[]).push(cb);
+  if(window._igLoaded)return;
   window._igLoaded=true;
   var s=document.createElement('script');s.async=true;s.src='https://www.instagram.com/embed.js';
-  s.onload=function(){igProcess(0);};
+  var go=function(n){if(window.instgrm&&window.instgrm.Embeds){var q=window._igQ||[];window._igQ=[];q.forEach(function(f){f();});}else if(n<60)setTimeout(function(){go(n+1);},250);};
+  s.onload=function(){go(0);};
   document.body.appendChild(s);
 }
+function igMount(el){
+  if(el.dataset.done)return;
+  igEnsure(function(){
+    if(el.dataset.done)return;el.dataset.done='1';
+    var u=el.dataset.ig;
+    el.innerHTML='<blockquote class="instagram-media" data-instgrm-permalink="'+u+'" data-instgrm-version="14"><a href="'+u+'" target="_blank" rel="noopener">View this on Instagram \u2192</a></blockquote>';
+    window.instgrm.Embeds.process();
+    setTimeout(function(){
+      var host=el.closest('figure')||el.parentNode;
+      if(host.querySelector('iframe'))return;
+      el.innerHTML='<div class="igfallback" style="text-align:center;"><p style="margin:0 0 .7rem;">Instagram would not show this one here.</p><a class="btn" href="'+u+'" target="_blank" rel="noopener">Watch it on Instagram \u2197</a></div>';
+    },12000);
+  });
+}
+function igWatch(){
+  var els=document.querySelectorAll('.igslot');
+  if(!('IntersectionObserver' in window)){els.forEach(igMount);return;}
+  if(!window._igIO){window._igIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){window._igIO.unobserve(e.target);igMount(e.target);}});},{rootMargin:'300px'});}
+  els.forEach(function(el){if(!el.dataset.done&&!el.dataset.watch){el.dataset.watch='1';window._igIO.observe(el);}});
+}
+function loadIG(){igEnsure(function(){window.instgrm.Embeds.process();});}
 fitName();
 // accordion toggle (projects education lessons)
 function toggleAcc(el){el.classList.toggle('open');}
