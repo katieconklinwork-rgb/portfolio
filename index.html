@@ -826,6 +826,7 @@ a.cell:hover{transform:translateY(-3px);}
 .igfig{margin:0;}
 .igslot{min-height:96px;}
 .igslot .instagram-media{margin:0 auto !important;min-width:0 !important;max-width:540px !important;width:100% !important;}
+.igloadbtn{margin-top:.6rem;}
 .igfallback{display:block;padding:1.1rem 1.2rem;border:1.5px dashed rgba(51,41,39,.4);border-radius:14px;font-weight:600;color:var(--mocha);text-decoration:none;line-height:1.4;}
 .igcap{font-size:.82rem;color:var(--mocha-soft);margin-top:.5rem;text-align:center;}
 .igsub{font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mocha-soft);margin:0 0 .9rem;}
@@ -2205,12 +2206,15 @@ window.addEventListener('resize',fitName);
 const _go=go;
 go=function(id){_go(id);if(id==='home')requestAnimationFrame(fitName);if(id==='zora')loadIG();if(id==='purplealert')igWatch();if(window.dotAll)requestAnimationFrame(dotAll);};
 // Instagram embeds: load embed.js the first time the Zora page is shown (correct width when visible)
-function igMount(el){if(el.dataset.done)return;el.dataset.done='1';var u=el.dataset.ig;el.innerHTML='<blockquote class="instagram-media" data-instgrm-permalink="'+u+'" data-instgrm-version="14"><a href="'+u+'" target="_blank" rel="noopener">View this on Instagram →</a></blockquote>';loadIG();}
-function igWatch(){var els=document.querySelectorAll('.igslot');if(!('IntersectionObserver' in window)){els.forEach(igMount);return;}if(!window._igIO){window._igIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){window._igIO.unobserve(e.target);igMount(e.target);}});},{rootMargin:'500px'});}els.forEach(function(el){if(!el.dataset.done&&!el.dataset.watch){el.dataset.watch='1';window._igIO.observe(el);}});}
+function igMount(el){if(el.dataset.done)return;el.dataset.done='1';var u=el.dataset.ig;el.innerHTML='<blockquote class="instagram-media" data-instgrm-permalink="'+u+'" data-instgrm-version="14"><a href="'+u+'" target="_blank" rel="noopener">View this on Instagram \u2192</a></blockquote>';loadIG();}
+function igProcess(n){if(window.instgrm&&window.instgrm.Embeds){window.instgrm.Embeds.process();return;}if(n>40)return;setTimeout(function(){igProcess(n+1);},250);}
+// Posts load only when tapped, so the page stays fast (53 live embeds at once was too heavy)
+function igWatch(){document.querySelectorAll('.igslot').forEach(function(el){if(el.dataset.done||el.dataset.btn)return;el.dataset.btn='1';var b=document.createElement('button');b.type='button';b.className='btn igloadbtn';b.textContent='Load post here';b.onclick=function(){igMount(el);};el.appendChild(b);});}
 function loadIG(){
-  if(window._igLoaded){ if(window.instgrm&&window.instgrm.Embeds)window.instgrm.Embeds.process(); return; }
+  if(window._igLoaded){igProcess(0);return;}
   window._igLoaded=true;
   var s=document.createElement('script');s.async=true;s.src='https://www.instagram.com/embed.js';
+  s.onload=function(){igProcess(0);};
   document.body.appendChild(s);
 }
 fitName();
@@ -2301,6 +2305,27 @@ function closeCat(){
 // reset projects to landing whenever the page is opened fresh
 const _go2=go;
 go=function(id){_go2(id);if(id==='projects'){closeCat();}};
+</script>
+<script>
+// Instagram tiles open the post right on the site (no account needed to look); the Instagram link stays as a backup
+(function(){var d=document.getElementById('pa-dialog');if(!d)return;
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a.igtile');
+  if(!a||d.contains(a)||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+  var u=a.getAttribute('href')||'';if(!/^https:\/\/www\.instagram\.com\/(p|reel)\/[\w-]+\/?$/.test(u))return;
+  e.preventDefault();
+  d.className='padialog narrow';
+  d.querySelector('#pad-title').textContent=a.getAttribute('aria-label')||'Instagram post';
+  var body=d.querySelector('.pad-body');body.innerHTML='';
+  var slot=document.createElement('div');slot.className='igslot';slot.dataset.ig=u;
+  slot.innerHTML='<a class="igfallback" href="'+u+'" target="_blank" rel="noopener">View on Instagram \u2197</a>';
+  body.appendChild(slot);
+  var n=document.createElement('p');n.style.cssText='margin:1rem 0 0;font-size:.9rem;color:var(--mocha-soft);text-align:center;';
+  n.innerHTML='Post not showing? <a href="'+u+'" target="_blank" rel="noopener" style="color:var(--mocha);font-weight:600;">Open it on Instagram \u2197</a>';
+  body.appendChild(n);
+  d.showModal();document.body.style.overflow='hidden';d.scrollTop=0;
+  if(window.igMount)igMount(slot);
+},true);})();
 </script>
 </body>
 </html>
